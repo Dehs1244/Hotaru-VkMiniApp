@@ -1,0 +1,34 @@
+{
+  "short_name": "Хотару",
+  "name": "Хотару - Мейд-приложение",
+  "description": "Расширение для Хотару | Мейд-бота для ВК в виде приложения на основе VkMiniApps",
+  "author": "Dehs",
+  "developer": {
+    "name": "Dehs",
+    "url": "https://github.com/Dehs1244"
+  },
+  "icons": [
+    {
+      "src": "/icons/192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icons/512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "theme": {
+    "colors": {
+      "frame": "#1C1C1C",
+      "tab_background_text": "#FFF"
+    }
+  },
+  "background_color": "#FFF",
+  "display": "standalone",
+  "scope": "/",
+  "default_locale": "ru",
+  "theme_color": "#3367D6"
+}

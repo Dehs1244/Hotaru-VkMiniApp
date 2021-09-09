@@ -1,0 +1,4 @@
+.HeightAnimation {
+    height: 0;
+    transition: height 0.5s;
+}
