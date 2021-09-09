@@ -3,3 +3,5 @@ build
 bundle.zip
 .eslintcache
 DevStart.bat
+BuildApplication.bat
+DeplotVkHosting.bat
