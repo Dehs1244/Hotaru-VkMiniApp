@@ -3,10 +3,9 @@ import VKBridge from "@vkontakte/vk-bridge";
 import { AdaptivityProvider, ANDROID, AppRoot } from "@vkontakte/vkui";
 import { Router } from "@unexp/router";
 
-import { RootLayoutChat } from "./RootLayoutChatPanel";
+import { RootLayoutChat } from "./RootLayoutChat";
 
 import { useAppearance } from "./hooks";
-import { RootLayoutChat } from "./RootLayoutChatPanel";
 
 export function App() {
 

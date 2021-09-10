@@ -20,7 +20,7 @@ const settingsPanel = [
         icon: <Icon28MessageUnreadOutline/>
     },
     {
-        id: "creationPool_achiviments",
+        id: "creationPool_achivementsCreate",
         title: "Создание ачивок",
         description: "Создание и модифицирование ачивок, получаемые за XP опыт",
         icon: <Icon28DonateCircleFillYellow/>

@@ -1,16 +1,15 @@
 import React, { Fragment, useState, useEffect, useReducer } from "react";
-import { Panel, Group, Header, SimpleCell, Avatar, IconButton } from "@vkontakte/vkui";
+import { Panel, Group, Header, SimpleCell, Avatar, IconButton, Footer } from "@vkontakte/vkui";
 import { Icon28LinkOutline } from "@vkontakte/icons";
-import { useRouter } from "@unexp/router";
 import axios from "axios";
 import VKBridge from "@vkontakte/vk-bridge";
+import packageJson from "../package.json";
 
 import { CustomPanelHeader, Spinner } from "./components";
 
 import { Layout } from "./Layout";
 
 export function RootLayoutChat({ id }) {
-    const { push } = useRouter();
     const [mount, setMount] = useState(true);
     const [ chatsData, setDataChat] = useState(null);
     const [ chatUserData, setCorrectDataChat] = useState(null);
@@ -63,6 +62,7 @@ export function RootLayoutChat({ id }) {
                 }
             </Group>
         </Group>
+        <Footer>Версия мейд-приложения: v{packageJson.version}</Footer>
         </Panel>
         : <Layout chatId = {chatUserData.id} chatData = {chatUserData} userId = {userId} setUserChatData = {setCorrectDataChat}/>
         :
@@ -71,6 +71,7 @@ export function RootLayoutChat({ id }) {
                                left={false}
             />
         <Spinner/>
+        <Footer>Версия мейд-приложения: v{packageJson.version}</Footer>
         </Panel>
     )
 }

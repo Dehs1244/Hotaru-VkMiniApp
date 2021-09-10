@@ -31,6 +31,15 @@ export function getRatio(dividend, divider) {
     return divider && dividend ? (dividend / divider).toFixed(2) : 0;
 }
 
+export function convertFileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
+
 export function loadImage(src) {
     return new Promise((resolve, reject) => {
         const image = new Image();

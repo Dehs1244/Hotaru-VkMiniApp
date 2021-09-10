@@ -3,7 +3,7 @@ import { PanelHeader, SplitCol, SplitLayout, ModalRoot, View, ViewWidth, platfor
 import { useRouter, useStructure, useSwipeBack } from "@unexp/router";
 
 // Панели
-import { Home, SendMessage, UserProfile, SettingsMenu, MainSettings, SendAnonimRp, CreationPool, CreationPoolRp, CustomRpList } from "./panels";
+import { Home, SendMessage, UserProfile, SettingsMenu, MainSettings, SendAnonimRp, CreationPool, CreationPoolRp, CustomRpList, CreationPoolAchivements } from "./panels";
 // Модалки
 import { CardsPreview, KeyCardPreview } from "./modals";
 //
@@ -54,6 +54,7 @@ export function Layout({ chatId, chatData, userId, setUserChatData }) {
                     <CreationPool id = "creationPool"/>
                     <CreationPoolRp id = "creationPool_rp" chatId = {chatId} chatData = {chatData}/>
                     <CustomRpList id = "creationPool_customRpList" chatId = {chatId} chatData = {chatData} setPopoutElement = {setPopoutElement}/>
+                    <CreationPoolAchivements id = "creationPool_achivementsCreate" chatId = {chatId} chatData = {chatData} />
                 </View>
             </SplitCol>
         </SplitLayout>
