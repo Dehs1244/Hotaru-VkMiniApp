@@ -13,7 +13,7 @@ const settingsPanel = [
         icon: <Icon28MessagesCircleFillYellow/>
     },
     {
-        id: "nortification",
+        id: "settings_notifications",
         title: "Оповещения",
         description: "Настройка отправки различных оповещений в беседу",
         icon: <Icon28Notification/>

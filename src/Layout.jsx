@@ -3,7 +3,7 @@ import { PanelHeader, SplitCol, SplitLayout, ModalRoot, View, ViewWidth, platfor
 import { useRouter, useStructure, useSwipeBack } from "@unexp/router";
 
 // Панели
-import { Home, SendMessage, UserProfile, SettingsMenu, MainSettings, SendAnonimRp, CreationPool, CreationPoolRp, CustomRpList, CreationPoolAchivements } from "./panels";
+import { Home, SendMessage, UserProfile, SettingsMenu, MainSettings, SendAnonimRp, CreationPool, CreationPoolRp, CustomRpList, CreationPoolAchivements, CustomAchivementsList, NotificationSettings } from "./panels";
 // Модалки
 import { CardsPreview, KeyCardPreview } from "./modals";
 //
@@ -50,11 +50,13 @@ export function Layout({ chatId, chatData, userId, setUserChatData }) {
                     <SendMessage id = "sendMessage" chatId = {chatId}/>
                     <SettingsMenu id = "settings" chatData = {chatData}/>
                     <SendAnonimRp id = "sendAnonimRp" chatId = {chatId} chatData = {chatData}/>
-                    <MainSettings id="settings_main" chatData = {chatData}/>
+                    <MainSettings id="settings_main" chatData = {chatData} chatId = {chatId} setUserChatData = {setUserChatData}/>
                     <CreationPool id = "creationPool"/>
                     <CreationPoolRp id = "creationPool_rp" chatId = {chatId} chatData = {chatData}/>
                     <CustomRpList id = "creationPool_customRpList" chatId = {chatId} chatData = {chatData} setPopoutElement = {setPopoutElement}/>
                     <CreationPoolAchivements id = "creationPool_achivementsCreate" chatId = {chatId} chatData = {chatData} />
+                    <CustomAchivementsList id="creationPoll_achivementsList" chatId = {chatId} chatData = {chatData} setPopoutElement = {setPopoutElement}/>
+                    <NotificationSettings id="settings_notifications" chatData={chatData} chatId={chatId}/>
                 </View>
             </SplitCol>
         </SplitLayout>

@@ -66,7 +66,6 @@ export function Home({ id, chatData, setUserChatData, userId }) {
     }, false);
 
     useEffect(() => {
-        console.log(chatData);
         for(var i = 0; i < chatData.chatAdmins.length; i++)
         {
             if(chatData.chatAdmins[i] == userId) setUserAdmin(true);

@@ -26,7 +26,6 @@ export function RootLayoutChat({ id }) {
 
     useEffect( async() => {
 		var vkData = await VKBridge.send("VKWebAppGetUserInfo");
-		console.log(vkData);
         var userId = vkData.id;
         setVkUserId(userId); //VKBridgebridge.send("VKWebAppGetUserInfo").data.Id);
         getUserChats(userId);

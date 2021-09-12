@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useReducer, useEffect } from "react";
 import { Panel, SimpleCell, Group } from "@vkontakte/vkui";
 import { Icon28MessageAddBadgeOutline, Icon28DonateCircleFillYellow, Icon28MessageUnreadOutline } from '@vkontakte/icons';
+import { Icon28ListOutline } from '@vkontakte/icons';
 import { CustomPanelHeader } from "../../components";
 import { sendBotPayload } from "../../hooks";
 import { useRouter } from "@unexp/router";
@@ -24,6 +25,12 @@ const settingsPanel = [
         title: "Создание ачивок",
         description: "Создание и модифицирование ачивок, получаемые за XP опыт",
         icon: <Icon28DonateCircleFillYellow/>
+    },
+    {
+        id: "creationPoll_achivementsList",
+        title: "Список всех ачивок",
+        description: "Менеджмент всех созданных ачивок",
+        icon: <Icon28ListOutline/>
     }
 ];
 
