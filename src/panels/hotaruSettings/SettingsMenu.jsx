@@ -19,7 +19,7 @@ const settingsPanel = [
         icon: <Icon28Notification/>
     },
     {
-        id: "qurantineZoneSettings",
+        id: "quarantineZoneSettings",
         title: "Карантинная зона беседы",
         description: "Настройка макс. игроков, темы карантинной зоны, время сброса груза и т.д",
         icon: <Icon28SnowflakeOutline/>
@@ -37,7 +37,7 @@ const settingsPanel = [
         icon: <Icon28PenKeyholeOutline/>
     },
     {
-        id: "chatmodeSettings",
+        id: "chatModeSettings",
         title: "Режим беседы",
         description: "Настройка режима работы Хотару в беседе. Важный пункт настройки.",
         icon: <Icon28StarsCircleFillViolet/>
@@ -57,20 +57,6 @@ const settingsPanel = [
 ];
 
 export function SettingsMenu({ id, chatId, chatData }) {
-    const [mount, setMount] = useState(true);
-    const [error, setError] = useState(null);
-    const { push } = useRouter();
-    const [spinner, setSpinner] = useReducer((state, spinner) => {
-
-        if (spinner) {
-            setError(null);
-        }
-        return spinner;
-    }, true);
-
-    useEffect(() => {
-        return () => setMount(false);
-    }, []);
 
     return (
         <Panel id={id}>
