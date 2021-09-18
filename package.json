@@ -1,6 +1,7 @@
 {
   "name": "HotaruBot-miniapp",
   "version": "1.0.0",
+  "bot_version_valid": "2.3.8",
   "description": "",
   "homepage": "./",
   "main": "./src/index.jsx",

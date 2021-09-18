@@ -3,7 +3,7 @@ import React from "react";
 export function IconGoldCard({ width = 28, height = 28, color = "var(--accent)" }) {
     return (
         <svg
-         class = "vkuiIcon Icon"
+        className = "vkuiIcon Icon"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsOsb="http://www.openswatchbook.org/uri/2009/osb"
           width={width}

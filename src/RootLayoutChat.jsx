@@ -3,14 +3,15 @@ import { Panel, Group, Header, SimpleCell, Avatar, IconButton, Footer } from "@v
 import { Icon28LinkOutline } from "@vkontakte/icons";
 import axios from "axios";
 import VKBridge from "@vkontakte/vk-bridge";
-import packageJson from "../package.json";
+import { useVersionProvider } from "./hooks/versionProvider";
 
-import { CustomPanelHeader, Spinner } from "./components";
+import { CustomPanelHeader, Spinner, MainFooterInfo } from "./components";
 
 import { Layout } from "./Layout";
 
 export function RootLayoutChat({ id }) {
     const [mount, setMount] = useState(true);
+    const { setMiniAppVersion, setBotVersion } = useVersionProvider();
     const [ chatsData, setDataChat] = useState(null);
     const [ chatUserData, setCorrectDataChat] = useState(null);
     const [ userId, setVkUserId ] = useState(0);
@@ -27,7 +28,7 @@ export function RootLayoutChat({ id }) {
     useEffect( async() => {
 		var vkData = await VKBridge.send("VKWebAppGetUserInfo");
         var userId = vkData.id;
-        setVkUserId(userId); //VKBridgebridge.send("VKWebAppGetUserInfo").data.Id);
+        setVkUserId(userId);
         getUserChats(userId);
         return () => setMount(false);
     }, []);
@@ -41,10 +42,21 @@ export function RootLayoutChat({ id }) {
             })
     };
 
+    if(spinner) return (
+        <Panel id={id}>
+            <CustomPanelHeader status="Загружаем беседы, подождите..."
+                               left={false}
+            />
+             <Spinner/>
+            <MainFooterInfo/>
+        </Panel>
+    )
+
     return (
-        !spinner ?
+        <Panel id={id}>
+        {
         (chatUserData == null) ?
-            <Panel id={id}>
+        <Fragment key="RootLayout__">
             <CustomPanelHeader status="Выберите свой чат"
                                left={false}
             />
@@ -61,16 +73,10 @@ export function RootLayoutChat({ id }) {
                 }
             </Group>
         </Group>
-        <Footer>Версия мейд-приложения: v{packageJson.version}</Footer>
-        </Panel>
+        </Fragment>
         : <Layout chatId = {chatUserData.id} chatData = {chatUserData} userId = {userId} setUserChatData = {setCorrectDataChat}/>
-        :
-        <Panel id={id}>
-        <CustomPanelHeader status="Загружаем беседы, подождите..."
-                               left={false}
-            />
-        <Spinner/>
-        <Footer>Версия мейд-приложения: v{packageJson.version}</Footer>
+        }
+        <MainFooterInfo/>
         </Panel>
     )
 }

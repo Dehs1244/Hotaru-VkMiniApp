@@ -69,7 +69,7 @@ export function CreationPoolRp({ id, chatId, chatData }) {
         let peerId = 2000000000 + chatId;
         var rpCaseCommand = rpCase != "" ? `/${rpCase}` : ``;
         var text = "";
-        if(femaleRpText != "") text = `+рп ${rpText}(${femaleRpText})/${emojiSet}/${resultRp}${rpCaseCommand}`
+        if(femaleRpText != "") text = `+рп ${rpText}/${emojiSet}/${resultRp}(${femaleRpText})${rpCaseCommand}`
         else text = `+рп ${rpText}/${emojiSet}/${resultRp}${rpCaseCommand}`
         sendBotPayload(peerId, text);
         console.log(text);

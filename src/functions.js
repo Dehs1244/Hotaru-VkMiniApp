@@ -31,6 +31,13 @@ export function getRatio(dividend, divider) {
     return divider && dividend ? (dividend / divider).toFixed(2) : 0;
 }
 
+Date.prototype.addHours= function(h){
+    this.setHours(this.getHours()+h);
+    return this;
+}
+
+export function getUtcTime() { return (new Date().getTime() + new Date().getTimezoneOffset()) }
+
 export function convertFileToBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();

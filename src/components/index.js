@@ -11,3 +11,5 @@ export { InfinityScroll } from "./InfinityScroll";
 
 export { FavoriteList } from "./FavoriteList";
 export { InputWithFavorite } from "./InputWithFavorite";
+export { PageText } from "./PageText";
+export { MainFooterInfo } from "./MainFooterInfo";

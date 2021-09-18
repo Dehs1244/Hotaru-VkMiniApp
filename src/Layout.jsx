@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { PanelHeader, SplitCol, SplitLayout, ModalRoot, View, ViewWidth, platform, useAdaptivity, Alert } from "@vkontakte/vkui";
+import React, { useEffect, useState } from "react";
+import { PanelHeader, SplitCol, SplitLayout, ModalRoot, View, ViewWidth, platform, useAdaptivity } from "@vkontakte/vkui";
 import { useRouter, useStructure, useSwipeBack } from "@unexp/router";
 
 // Панели
-import { Home, SendMessage, UserProfile, SettingsMenu, MainSettings, SendAnonimRp, CreationPool, CreationPoolRp, CustomRpList, CreationPoolAchivements, CustomAchivementsList, NotificationSettings } from "./panels";
+import { Home, SendMessage, UserProfile, SettingsMenu, MainSettings, SendAnonimRp, CreationPool, CreationPoolRp, CustomRpList, CreationPoolAchivements, CustomAchivementsList, NotificationSettings, LimitsSettings } from "./panels";
+import { QuarantineZoneSettings, ForbiddenCommandsSettings, ChatModeSettings, ExodusSettings, RolesSettings, CustomRoleAdd, CustomRoleList } from "./panels";
 // Модалки
 import { CardsPreview, KeyCardPreview } from "./modals";
 //
@@ -57,6 +58,14 @@ export function Layout({ chatId, chatData, userId, setUserChatData }) {
                     <CreationPoolAchivements id = "creationPool_achivementsCreate" chatId = {chatId} chatData = {chatData} />
                     <CustomAchivementsList id="creationPoll_achivementsList" chatId = {chatId} chatData = {chatData} setPopoutElement = {setPopoutElement}/>
                     <NotificationSettings id="settings_notifications" chatData={chatData} chatId={chatId}/>
+                    <QuarantineZoneSettings id = "settings_quarantineZone" chatData = {chatData} chatId = {chatId}/>
+                    <LimitsSettings id="settings_limitsSettings" chatData={chatData} chatId={chatId}/>
+                    <ForbiddenCommandsSettings id="settings_forbiddenCommands" chatData={chatData} chatId={chatId}/>
+                    <ChatModeSettings id="settings_chatMode" chatData={chatData} chatId={chatId} SetPopout={setPopoutElement}/>
+                    <ExodusSettings id="settings_exodus" chatId={chatId} chatData={chatData}/>
+                    <RolesSettings id="settings_roles" chatId={chatId} chatData={chatData} setPopoutElement={setPopoutElement} />
+                    <CustomRoleAdd id="settings_roles_add" chatId={chatId} chatData={chatData}/>
+                    <CustomRoleList id="settings_roles_list" chatId={chatId} chatData={chatData} setPopoutElement={setPopoutElement}/>
                 </View>
             </SplitCol>
         </SplitLayout>

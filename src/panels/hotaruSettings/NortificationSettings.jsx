@@ -49,8 +49,6 @@ export function NotificationSettings({ id, chatData, chatId }) {
 
   const OnDoneSettings = () => {
     let peerId = 2000000000 + chatId;
-    console.log(blockedNotifications.current);
-    console.log(unblockedNotifications.current);
     for (let notification of blockedNotifications.current) {
       sendBotPayload(peerId, `!оповещение ${notification + 1} выкл`);
       chatData.settings.blockedPushesId.push(notification);

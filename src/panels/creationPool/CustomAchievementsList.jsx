@@ -1,29 +1,15 @@
-import React, { Fragment, useState, useReducer, useEffect } from "react";
+import React, { Fragment, useState,} from "react";
 import { Panel, Placeholder, Group, Snackbar, Alert, Cell, List } from "@vkontakte/vkui";
 import { Icon16Clear, Icon48Block } from '@vkontakte/icons';
 import { CustomPanelHeader } from "../../components";
 import { sendBotPayload } from "../../hooks";
-import { useRouter } from "@unexp/router";
 
 export function CustomAchivementsList({ id, chatId, chatData, setPopoutElement }) {
-    const [mount, setMount] = useState(true);
-    const [error, setError] = useState(null);
     const [snackbar, setSnackbar ] = useState(null);
-    const [spinner, setSpinner] = useReducer((state, spinner) => {
-
-        if (spinner) {
-            setError(null);
-        }
-        return spinner;
-    }, true);
-
-    useEffect(() => {
-        return () => setMount(false);
-    }, []);
 
     const OnClosePopout = () => setPopoutElement(null);
 
-    const AlertRemoveAchivement = (index) => {
+    const AlertRemoveAchievement = (index) => {
         setPopoutElement(
             <Alert
             actions={[{
@@ -32,7 +18,7 @@ export function CustomAchivementsList({ id, chatId, chatData, setPopoutElement }
             }, {
               title: 'Удалить',
               autoclose: true,
-              action: () => RemoveAchivement(index),
+              action: () => RemoveAchievement(index),
             }]}
             actionsLayout="horizontal"
             onClose={OnClosePopout}
@@ -41,7 +27,7 @@ export function CustomAchivementsList({ id, chatId, chatData, setPopoutElement }
           />)
     }
 
-    const RemoveAchivement = (index) => {
+    const RemoveAchievement = (index) => {
         let peerId = 2000000000 + chatId;
         sendBotPayload(peerId, `-ачивка ${index + 1}`);
         chatData.achievements.splice(index, 1);
@@ -74,7 +60,7 @@ export function CustomAchivementsList({ id, chatId, chatData, setPopoutElement }
                                 return (
                                     <Fragment key={id}>
                                             <Cell key={item} description = {`Уровень XP: ${item.xpLevel}`} removable onRemove={() => {
-                                                AlertRemoveAchivement(index)
+                                                AlertRemoveAchievement(index)
                                       }}>{item.smile} {item.name}</Cell>
                                     </Fragment>
                                 );

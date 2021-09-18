@@ -31,6 +31,12 @@ const settingsPanel = [
         title: "Список всех ачивок",
         description: "Менеджмент всех созданных ачивок",
         icon: <Icon28ListOutline/>
+    },
+    {
+        id: "settings_roles_list",
+        title: "Список всех ролей",
+        description: "Менеджмент всех созданных ролей",
+        icon: <Icon28ListOutline/>
     }
 ];
 

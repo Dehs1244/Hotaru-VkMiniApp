@@ -1,11 +1,12 @@
 import React from "react";
 
-export function IconHotaruErrorType3({ width = 56, height = 56, className = "" }) {
+export function IconHotaruErrorType3({ width = 56, height = 56, className="" }) {
   return (
     <svg
+    className = "vkuiIcon Icon"
       xmlns="http://www.w3.org/2000/svg"
-      width="488"
-      height="511"
+      width={width}
+      height={height}
       x="0"
       y="0"
       version="1.1"

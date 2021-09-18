@@ -4,6 +4,7 @@ import { AdaptivityProvider, ANDROID, AppRoot } from "@vkontakte/vkui";
 import { Router } from "@unexp/router";
 
 import { RootLayoutChat } from "./RootLayoutChat";
+import '@vkontakte/vkui/dist/unstable.css' 
 
 import { useAppearance } from "./hooks";
 

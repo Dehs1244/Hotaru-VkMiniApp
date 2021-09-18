@@ -1,0 +1,1 @@
+export { IsHotaruCommand } from "./hotaruServerApi";

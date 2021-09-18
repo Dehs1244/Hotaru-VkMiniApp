@@ -180,8 +180,8 @@ export function MainSettings({ id, chatData, chatId, setUserChatData }) {
         }}>
           Защита кнопок
         </Checkbox>
-        <Checkbox defaultChecked={chatData.settings.viewWidget} onChange={(e) => {
-          chatData.settings.viewWidget = e.target.checked;
+        <Checkbox defaultChecked={chatData.settings.vievWidget} onChange={(e) => {
+          chatData.settings.vievWidget = e.target.checked;
           OnChangeSettings("viewWidget")
         }}>
           Отображение в виджете

@@ -19,37 +19,37 @@ const settingsPanel = [
         icon: <Icon28Notification/>
     },
     {
-        id: "quarantineZoneSettings",
+        id: "settings_quarantineZone",
         title: "Карантинная зона беседы",
         description: "Настройка макс. игроков, темы карантинной зоны, время сброса груза и т.д",
         icon: <Icon28SnowflakeOutline/>
     },
     {
-        id: "limitsSettings",
+        id: "settings_limitsSettings",
         title: "Лимиты для участников",
         description: "Настройка максимального кол-ва сбора карт общения.",
         icon: <Icon28LockOutline/>
     },
     {
-        id: "forbiddenCommands",
+        id: "settings_forbiddenCommands",
         title: "Запрещённые команды",
         description: "Отключение различных команд для беседы.",
         icon: <Icon28PenKeyholeOutline/>
     },
     {
-        id: "chatModeSettings",
+        id: "settings_chatMode",
         title: "Режим беседы",
         description: "Настройка режима работы Хотару в беседе. Важный пункт настройки.",
         icon: <Icon28StarsCircleFillViolet/>
     },
     {
-        id: "exodusSettings",
+        id: "settings_exodus",
         title: "Исходы",
         description: "Настройка исходов для различных событий в беседе (проигрыш в города, в дуэли и т.д).",
         icon: <Icon28GhostSimleOutline/>
     },
     {
-        id: "rolesSettings",
+        id: "settings_roles",
         title: "Роли",
         description: "Настройка и создание различных ролей для беседы.",
         icon: <Icon28AccessibilityOutline/>
@@ -57,6 +57,8 @@ const settingsPanel = [
 ];
 
 export function SettingsMenu({ id, chatId, chatData }) {
+
+    const { push } = useRouter();
 
     return (
         <Panel id={id}>
