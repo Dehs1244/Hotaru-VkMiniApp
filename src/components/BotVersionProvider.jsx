@@ -12,7 +12,6 @@ export function BotVersionProvider({ children }) {
     const [ miniAppVersion, setMiniAppVersion ] = useState(0);
 
     useEffect(() => {
-        console.log(packageJson.bot_version_valid);
         setBotVersion(packageJson.bot_version_valid);
         setMiniAppVersion(packageJson.version);
     }, []);

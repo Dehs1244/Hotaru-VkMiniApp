@@ -18,3 +18,6 @@ export { ExodusSettings } from "./hotaruSettings/ExodusSettings";
 export { RolesSettings } from "./hotaruSettings/RolesSettings";
 export { CustomRoleAdd } from "./creationPool/CustomRoleAdd";
 export { CustomRoleList } from "./creationPool/CustomRoleList";
+export { OperativeForm } from "./userProfile/OperativeForm";
+export { CreationPool_Currency } from "./creationPool/CreationPoll_Currency";
+export { MashupNetPanel } from "./global/MashupNetList";

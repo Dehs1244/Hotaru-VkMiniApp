@@ -3,10 +3,10 @@ import { PanelHeader, SplitCol, SplitLayout, ModalRoot, View, ViewWidth, platfor
 import { useRouter, useStructure, useSwipeBack } from "@unexp/router";
 
 // Панели
-import { Home, SendMessage, UserProfile, SettingsMenu, MainSettings, SendAnonimRp, CreationPool, CreationPoolRp, CustomRpList, CreationPoolAchivements, CustomAchivementsList, NotificationSettings, LimitsSettings } from "./panels";
-import { QuarantineZoneSettings, ForbiddenCommandsSettings, ChatModeSettings, ExodusSettings, RolesSettings, CustomRoleAdd, CustomRoleList } from "./panels";
+import { Home, SendMessage, UserProfile, SettingsMenu, MainSettings, SendAnonimRp, CreationPool, CreationPoolRp, CustomRpList, CreationPoolAchivements, CustomAchivementsList, NotificationSettings, LimitsSettings, OperativeForm } from "./panels";
+import { QuarantineZoneSettings, ForbiddenCommandsSettings, ChatModeSettings, ExodusSettings, RolesSettings, CustomRoleAdd, CustomRoleList, CreationPool_Currency, MashupNetPanel } from "./panels";
 // Модалки
-import { CardsPreview, KeyCardPreview } from "./modals";
+import { CardsPreview, KeyCardPreview, ValutesPreview, MoneyPreview } from "./modals";
 //
 
 import { useAppearance } from "./hooks";
@@ -15,7 +15,7 @@ export function Layout({ chatId, chatData, userId, setUserChatData }) {
 
     const { setPlatform } = useAppearance();
     const { viewWidth } = useAdaptivity();
-    const { view, modal, panel } = useStructure({ view: "home", panel: "home", popout: null });
+    const { view, modal, panel } =  useStructure({ view: "home", panel: "home", popout: null });
     const { back } = useRouter();
     const [popout, setPopoutElement] = useState(null);
 
@@ -34,6 +34,8 @@ export function Layout({ chatId, chatData, userId, setUserChatData }) {
                          >
                              <CardsPreview id="userProfile-cards-preview"/>
                              <KeyCardPreview id="userProfile-passes-preview"/>
+                             <ValutesPreview id="userProfile-valutes-preview"/>
+                             <MoneyPreview id="userProfile-money-preview"/>
                          </ModalRoot>
                      }
                      activeView={view}
@@ -66,6 +68,9 @@ export function Layout({ chatId, chatData, userId, setUserChatData }) {
                     <RolesSettings id="settings_roles" chatId={chatId} chatData={chatData} setPopoutElement={setPopoutElement} />
                     <CustomRoleAdd id="settings_roles_add" chatId={chatId} chatData={chatData}/>
                     <CustomRoleList id="settings_roles_list" chatId={chatId} chatData={chatData} setPopoutElement={setPopoutElement}/>
+                    <OperativeForm id="userProfile_operative"/>
+                    <MashupNetPanel id="mashupNet"/>
+                    <CreationPool_Currency id="creationPool_customCurrencyRp"/>
                 </View>
             </SplitCol>
         </SplitLayout>

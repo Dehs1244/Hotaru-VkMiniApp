@@ -1,12 +1,13 @@
 import React, { useReducer, useState, useEffect } from "react";
 import { Panel, FormItem, CustomSelectOption, Select, Snackbar, Div, Group, Avatar, Placeholder, Button } from "@vkontakte/vkui";
-import VKBridge from "@vkontakte/vk-bridge";
+import { VkApiCaller } from "../../utils";
 import getArgs from "vkappsutils/dist/Args";
 import { Icon48Block } from '@vkontakte/icons';
+import { Icon16ErrorCircleFill, Icon16Like } from '@vkontakte/icons';
 import { useRouter } from "@unexp/router";
 
 import { CustomPanelHeader, Spinner } from "../../components";
-import { sendBotPayload } from "../../hooks";
+import { sendBotPayload, useVkSnackbar } from "../../hooks";
 import FormData from "form-data"
 
 export function SendAnonimRp({ id, chatId, chatData }) {
@@ -17,7 +18,7 @@ export function SendAnonimRp({ id, chatId, chatData }) {
     const [error, setError] = useState(null);
     const [choosenUser, setUserRp] = useState("");
     const [choosenRp, setChoosenRp] = useState("");
-    const [snackbar, setSnackbar ] = useState(null);
+    const snackbar = useVkSnackbar();
     const [spinner, setSpinner] = useReducer((state, spinner) => {
 
         if (spinner) {
@@ -28,24 +29,19 @@ export function SendAnonimRp({ id, chatId, chatData }) {
     }, true);
 
     const SendRp = () =>{
+      if(choosenUser.length == 0) return snackbar.invokeSnackbar("Вы не указали пользователя", (<Icon16ErrorCircleFill />));
         var text = `!ановнрп ${chatId}
 ${choosenRp} https://vk.com/id${choosenUser}`
-        sendBotPayload(user_id, text)
-        setSnackbar(<Snackbar
-          onClose = {() => setSnackbar(null)}
-          >
-         Отправлено!
-        </Snackbar>);
+        sendBotPayload(user_id, text);
+        snackbar.invokeSnackbar("Отправлено!", (<Icon16Like />));
     }
 
     const GetAllConverstationMembers = async () => {
         let peerId = 2000000000 + chatId;
-        var data = await VKBridge.send("VKWebAppCallAPIMethod", {"method": "messages.getConversationMembers", "request_id": "hotaruRequest", "params": {"peer_id": peerId, "v":"5.131", "access_token":"375ce2d067e46841d5c655cc65e80cc7b04f0fda46dd66549ee82a55601ce378d148fe4a7c6985da3bdaf"}});
-        console.log(data);
-        var memberIds = data.response.items.map(member => member.member_id);
-        var usersData = await VKBridge.send("VKWebAppCallAPIMethod", {"method": "users.get", "request_id": "hotaruRequest", "params": {"user_ids": memberIds.join(","), "fields": "photo_50", "v":"5.131", "access_token":"375ce2d067e46841d5c655cc65e80cc7b04f0fda46dd66549ee82a55601ce378d148fe4a7c6985da3bdaf"}});
-        console.log(usersData);
-        setMembersInfo(usersData.response);
+        var data = await VkApiCaller.vkCall("messages.getConversationMembers", { "peer_id": peerId });
+        var memberIds = data.items.map(member => member.member_id);
+        var usersData = await VkApiCaller.vkCall("users.get", { "user_ids": memberIds.join(","), "fields": "photo_50" });
+        setMembersInfo(usersData);
         setSpinner(false);
     }
 
@@ -105,7 +101,7 @@ ${choosenRp} https://vk.com/id${choosenUser}`
             <CustomPanelHeader status="Загружаем информацию о участниках..."/>
             <Spinner/>
             </Group>}
-            {snackbar}
+            {snackbar.snackbar}
         </Panel>
     )
 }

@@ -18,3 +18,12 @@ export const IsHikkiCommand = async (text, chatId) =>{
   })
   return isCommand;
 }
+
+export const LoadHotaruMashupNet = async () => {
+  var mashupNet = {};
+  await axios.get(`https://blowoutbots.somee.com/api/hotaru/GetMashupNet`)
+  .then((response) => {
+    mashupNet = response.data;
+  });
+  return mashupNet;
+}

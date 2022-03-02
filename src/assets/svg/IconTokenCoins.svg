@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="IconTokenCoins.svg"
+   id="svg869"
+   preserveAspectRatio="xMidYMid meet"
+   viewBox="0 0 980.000000 893.000000"
+   height="893.000000pt"
+   width="980.000000pt"
+   version="1.0">
+  <metadata
+     id="metadata875">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs873">
+    <linearGradient
+       id="linearGradient885"
+       inkscape:collect="always">
+      <stop
+         id="stop881"
+         offset="0"
+         style="stop-color:#000000;stop-opacity:1;" />
+      <stop
+         id="stop883"
+         offset="1"
+         style="stop-color:#000000;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="104.44533"
+       x2="619.3645"
+       y1="104.44533"
+       x1="395.13794"
+       id="linearGradient889"
+       xlink:href="#linearGradient885"
+       inkscape:collect="always" />
+  </defs>
+  <sodipodi:namedview
+     inkscape:current-layer="svg869"
+     inkscape:window-maximized="1"
+     inkscape:window-y="-8"
+     inkscape:window-x="-8"
+     inkscape:cy="507.14992"
+     inkscape:cx="600.63656"
+     inkscape:zoom="0.49113436"
+     showgrid="false"
+     id="namedview871"
+     inkscape:window-height="1017"
+     inkscape:window-width="1920"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <g
+     style="fill:#0090ff;fill-opacity:1"
+     id="g867"
+     stroke="none"
+     fill="#000000"
+     transform="translate(0.000000,893.000000) scale(0.100000,-0.100000)">
+    <path
+       style="fill:#0090ff;fill-opacity:1"
+       id="path855"
+       d="M4050 8923 c-961 -29 -1827 -132 -2520 -299 -786 -189 -1267 -436 -1393 -714 -28 -63 -28 -187 0 -250 314 -693 2882 -1154 5483 -984 1560 101 2788 418 3191 823 106 106 134 167 134 286 0 119 -28 180 -134 286 -509 511 -2310 868 -4326 857 -192 -1 -388 -3 -435 -5z" />
+    <path
+       style="fill:#0090ff;fill-opacity:1"
+       id="path857"
+       d="M103 6695 l2 -520 29 -60 c145 -294 838 -614 1796 -829 1174 -262 2457 -331 3835 -205 804 73 1570 225 2145 424 174 61 481 197 618 275 202 114 346 240 401 351 l31 62 0 509 0 509 -46 -58 c-140 -177 -413 -350 -771 -488 l-73 -28 0 -311 c0 -303 -1 -312 -23 -350 -52 -92 -170 -100 -240 -17 l-27 33 0 267 c0 147 -2 270 -5 273 -3 2 -56 -10 -117 -27 l-113 -32 -5 -391 -5 -390 -30 -43 c-40 -57 -95 -84 -167 -84 -72 1 -132 39 -165 105 -23 43 -23 52 -23 383 0 318 -1 338 -17 333 -29 -9 -366 -63 -523 -85 -1341 -184 -3017 -175 -4314 25 -518 79 -897 165 -1257 284 -499 165 -804 352 -916 563 l-22 42 2 -520z" />
+    <path
+       style="fill:#0090ff;fill-opacity:1"
+       id="path859"
+       d="M9107 5800 c-33 -278 -564 -596 -1362 -814 -827 -226 -1837 -359 -3015 -397 -927 -29 -1912 77 -2815 302 -110 28 -231 59 -270 71 -195 57 -375 116 -516 169 -86 32 -160 59 -163 59 -12 0 6 -54 38 -114 131 -251 632 -498 1371 -676 1307 -315 3234 -394 4865 -200 507 61 1028 160 1410 270 620 179 1003 395 1114 630 26 55 31 77 31 140 0 65 -5 85 -32 140 -59 119 -172 223 -360 331 -71 42 -273 139 -287 139 -2 0 -6 -23 -9 -50z" />
+    <path
+       sodipodi:nodetypes="cccscsccccccccccscccscccsccccsccccc"
+       style="fill:#0090ff;fill-opacity:1"
+       id="path861"
+       d="m 940,4170 v -515 l 30,-64 c 92.5,-195 414.5,-395 886.125,-570 C 2327.75,2846 2949,2696 3640,2601 4207,2523 4821.5,2487 5443.25,2492.875 6065,2498.75 6694,2546.5 7290,2636 c 827,124 1533,328 2010,581 236,125 408,269 466,388 l 29,60 2,510 2,510 -26,-35 c -58,-76 -186,-192 -290,-260 -114,-76 -331,-186 -473,-241 -47,-18 -91,-37 -97,-42 -10,-7 -13,-83 -13,-321 0,-291 -1,-313 -20,-343 -41,-68 -112,-88 -184,-54 -33,17 -50,33 -65,65 -20,39 -21,60 -21,300 0,219 -2,257 -14,253 -8,-3 -60,-18 -115,-34 l -101,-28 v -361 c 0,-401 -4,-431 -62,-491 -21,-21 -52,-39 -85,-49 -48,-14 -58,-14 -106,0 -33,10 -64,28 -85,49 -57,59 -62,93 -62,449 0,299 -1,319 -17,314 -75,-21 -577,-94 -863,-125 -2153,-234 -4609,-2 -5685,536 -239,120 -387,244 -456,381 -18,37 -18,32 -19,-478 z" />
+    <path
+       style="fill:#0090ff;fill-opacity:1"
+       id="path863"
+       d="M600 3321 c-279 -125 -466 -270 -541 -417 -31 -61 -34 -76 -34 -148 1 -114 31 -174 144 -287 99 -98 167 -144 341 -233 1212 -616 4270 -815 6455 -420 957 173 1638 447 1828 737 36 55 74 144 65 153 -3 3 -45 -11 -92 -31 -313 -129 -908 -293 -1416 -389 -677 -127 -1250 -180 -1955 -180 -1488 0 -3060 239 -3909 595 -485 204 -748 414 -775 620 l-6 47 -105 -47z" />
+    <path
+       style="fill:#0090ff;fill-opacity:1"
+       id="path865"
+       d="M3 1690 l2 -515 34 -63 c124 -227 587 -487 1221 -682 683 -211 1485 -340 2500 -402 275 -17 1237 -17 1480 0 773 53 1394 146 1998 297 636 159 1095 343 1377 550 89 66 185 169 216 231 l24 49 3 525 3 525 -28 -55 c-71 -140 -295 -306 -573 -425 -617 -265 -1568 -451 -2710 -530 -765 -52 -1760 -44 -2505 21 -369 32 -797 86 -1117 142 l-107 19 -3 -341 c-3 -378 -2 -373 -72 -434 -33 -28 -89 -52 -126 -52 -37 0 -93 24 -126 52 -70 62 -69 51 -72 479 l-3 385 -67 17 c-37 9 -88 23 -114 31 l-48 15 0 -262 c0 -253 -1 -263 -23 -301 -51 -90 -165 -100 -237 -21 l-25 27 -5 326 -5 326 -145 61 c-177 74 -332 154 -448 232 -84 56 -236 196 -280 258 l-22 30 3 -515z" />
+  </g>
+  <text
+     transform="scale(0.85808995,1.165379)"
+     x="352.56259"
+     y="303.22668"
+     id="text879"
+     style="font-style:normal;font-weight:normal;font-size:43.5089px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.08943;stroke-miterlimit:4;stroke-dasharray:0, 11.9837;stroke-dashoffset:0;stroke-opacity:1"
+     xml:space="preserve"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Cooper Black';-inkscape-font-specification:'Cooper Black, ';fill:#0040ff;fill-opacity:1;stroke:#000000;stroke-width:1.08943;stroke-miterlimit:4;stroke-dasharray:0, 11.9837;stroke-dashoffset:0;stroke-opacity:1"
+       y="303.22668"
+       x="352.56259"
+       id="tspan877"
+       sodipodi:role="line">TOKEN COINS</tspan></text>
+</svg>

@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useReducer, useEffect } from "react";
 import { Panel, SimpleCell, Group } from "@vkontakte/vkui";
-import { Icon28MessageAddBadgeOutline, Icon28DonateCircleFillYellow, Icon28MessageUnreadOutline } from '@vkontakte/icons';
+import { Icon28MessageAddBadgeOutline, Icon28DonateCircleFillYellow, Icon28MessageUnreadOutline, Icon28MoneyTransferCircleFillTurquoise, Icon28MoneyRequestCircleFillBlue } from '@vkontakte/icons';
 import { Icon28ListOutline } from '@vkontakte/icons';
 import { CustomPanelHeader } from "../../components";
 import { sendBotPayload } from "../../hooks";
@@ -19,6 +19,18 @@ const settingsPanel = [
         title: "Список всех Рп команд",
         description: "Менеджмент всех созданных Рп команд",
         icon: <Icon28MessageUnreadOutline/>
+    },
+    {
+        id: "creationPool_customCurrencyRp",
+        title: "Создание РП Валют",
+        description: "Создание и модифицирование кастомных РП валют команд",
+        icon: <Icon28MoneyRequestCircleFillBlue/>
+    },
+    {
+        id: "creationPool_customCurrencyRpList",
+        title: "Список всех Рп валют команд",
+        description: "Менеджмент всех созданных Рп валют команд",
+        icon: <Icon28MoneyTransferCircleFillTurquoise/>
     },
     {
         id: "creationPool_achivementsCreate",

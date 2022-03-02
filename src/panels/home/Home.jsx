@@ -3,7 +3,7 @@ import getArgs from "vkappsutils/dist/Args";
 import VKBridge from "@vkontakte/vk-bridge";
 import axios from "axios";
 import { useRouter } from "@unexp/router";
-import { Panel, Group, CardGrid, Card, SimpleCell, Avatar, Button, ViewWidth, RichCell, useAdaptivity, Gradient, Title, PullToRefresh } from "@vkontakte/vkui";
+import { Panel, Div, Group, CardGrid, Card, SimpleCell, Avatar, Button, ViewWidth, RichCell, useAdaptivity, Gradient, Title, PullToRefresh } from "@vkontakte/vkui";
 import { Icon28Settings, Icon28EditOutline, Icon28BookOutline, Icon28SparkleOutline, Icon28Smiles2Outline, Icon28UserSquareOutline, Icon24Gallery, Icon28StatisticsOutline, Icon32Graffiti, Icon28AddOutline, Icon24Globe, Icon28GraphOutline } from "@vkontakte/icons";
 
 import { CustomPanelHeader, Spinner } from "../../components";
@@ -108,8 +108,7 @@ export function Home({ id, chatData, setUserChatData, userId }) {
                  <Avatar size={76} mode="app" src={chatData.avatar}/>
                  <Title style={{ marginBottom: 8, marginTop: 20 }} level="2" weight="medium">Беседа «{chatData.title}»</Title>
              </Gradient>
-
-
+             <Div>
                 <Group mode="plain">
                     <CardGrid style={{ marginBottom: "12px", marginTop: viewWidth > ViewWidth.MOBILE ? "8px" : "0" }}
                               size="l"
@@ -193,6 +192,7 @@ export function Home({ id, chatData, setUserChatData, userId }) {
                         }
                     </CardGrid>
                 </Group>
+                </Div>
             </Group>
         }
         </PullToRefresh>

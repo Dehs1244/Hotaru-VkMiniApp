@@ -1,6 +1,5 @@
 import VKBridge from "@vkontakte/vk-bridge";
 import axios from "axios";
-import { convertFileToBase64 } from "../functions";
 import FormData from "form-data";
 
 export const sendBotPayload = async (peerId, text) => {

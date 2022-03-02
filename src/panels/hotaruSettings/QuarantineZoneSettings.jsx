@@ -51,16 +51,16 @@ export function QuarantineZoneSettings({ id, chatData, chatId }) {
     <Panel id={id}>
       <CustomPanelHeader status="Настройки карантинной зоны" />
       <FormItem top={<Header>Версия нейрогенератора</Header>}>
-        <Radio name="radioTheme" value="1" description="Дефолтная тема карантинной зоны" defaultChecked={chatData.settings.quarantineTheme == 0} onChange={() => transformSetting(20, 1)}>
+        <Radio name="radioTheme" value="1" description="Дефолтная тема карантинной зоны" defaultChecked={chatData.settings.quarantineTheme == 1} onChange={() => transformSetting(20, 1)}>
           Холод
         </Radio>
-        <Radio name="radioTheme" value="1" description="Тема, вдохновлённая игрой «Boneworks»" defaultChecked={chatData.settings.quarantineTheme == 1} onChange={() => transformSetting(20, 2)}>
+        <Radio name="radioTheme" value="1" description="Тема, вдохновлённая игрой «Boneworks»" defaultChecked={chatData.settings.quarantineTheme == 2} onChange={() => transformSetting(20, 2)}>
           AI Зона
         </Radio>
-        <Radio name="radioTheme" value="1" description="Тема, основанная на сценарии зомби-вируса" defaultChecked={chatData.settings.quarantineTheme == 2} onChange={() => transformSetting(20, 3)}>
+        <Radio name="radioTheme" value="1" description="Тема, основанная на сценарии зомби-вируса" defaultChecked={chatData.settings.quarantineTheme == 3} onChange={() => transformSetting(20, 3)}>
           Вирус
         </Radio>
-        <Radio name="radioTheme" value="1" description="Тема, вдохновлённая игрой «Cyberpunk 2077» (баги идут в комплекте)" defaultChecked={chatData.settings.quarantineTheme == 3} onChange={() => transformSetting(20, 4)}>
+        <Radio name="radioTheme" value="1" description="Тема, вдохновлённая игрой «Cyberpunk 2077» (баги идут в комплекте)" defaultChecked={chatData.settings.quarantineTheme == 4} onChange={() => transformSetting(20, 4)}>
           Киберпанк
         </Radio>
       </FormItem>

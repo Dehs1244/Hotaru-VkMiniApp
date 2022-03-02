@@ -36,6 +36,14 @@ Date.prototype.addHours= function(h){
     return this;
 }
 
+export function currencyString(value){
+    var formatter = Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+  return formatter.format(value);
+}
+
 export function getUtcTime() { return (new Date().getTime() + new Date().getTimezoneOffset()) }
 
 export function convertFileToBase64(file) {

@@ -7,14 +7,19 @@ import { IconHotaru } from "../icons";
 
 import { useAppearance } from "../hooks";
 
-export function CustomPanelHeader({ status, left = true }) {
+export function CustomPanelHeader({ status, onBack = null, isback = true, left = true }) {
 
     const { back } = useRouter();
     const { scheme, toggleScheme } = useAppearance();
 
+    const Back = (event) =>{
+        if(onBack != null) onBack();
+        if(isback) back();
+    }
+
     return (
         <PanelHeader left={
-            left && <PanelHeaderBack onClick={back}/>
+            left && <PanelHeaderBack onClick={(e) => Back(e)}/>
         }
                      right={
                          <PanelHeaderButton onClick={toggleScheme}>
