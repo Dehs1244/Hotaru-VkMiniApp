@@ -21,3 +21,4 @@ export { CustomRoleList } from "./creationPool/CustomRoleList";
 export { OperativeForm } from "./userProfile/OperativeForm";
 export { CreationPool_Currency } from "./creationPool/CreationPoll_Currency";
 export { MashupNetPanel } from "./global/MashupNetList";
+export { WarPool, Projects } from "./war"

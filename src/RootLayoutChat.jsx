@@ -5,7 +5,7 @@ import { Icon28MusicOutline } from '@vkontakte/icons';
 import { useStructure, useRouter } from "@unexp/router";
 import axios from "axios";
 import VKBridge from "@vkontakte/vk-bridge";
-import { useVersionProvider } from "./hooks/versionProvider";
+import { useSpinnerState, useDatabaseProvider } from "./hooks";
 
 import { CustomPanelHeader, Spinner, MainFooterInfo, OfflineBlock } from "./components";
 
@@ -17,31 +17,27 @@ const globalPanels = [
         id: "mashupNet",
         title: "#MashupNet",
         description: "Мешапы созданные с помощью генератора Хотару",
-        icon: <Icon28MusicOutline/>
+        icon: <Icon28MusicOutline />
     }
 ];
 
 export function RootLayoutChat({ id }) {
     const [mount, setMount] = useState(true);
-    const [ chatsData, setDataChat] = useState(null);
-    const [ chatUserData, setCorrectDataChat] = useState(null);
-    const [ userId, setVkUserId ] = useState(0);
+    const [chatsData, setDataChats] = useState(null);
+    
+    const { chat: chatUserData, setChatData: setCorrectDataChat, updateBaseUser } = useDatabaseProvider();
+    const [userId, setVkUserId] = useState(0);
     const [error, setError] = useState(null);
     const [pinged, setHotaruPing] = useState(false);
-    const [ activeLayout, setActiveLayout ] = useState(null);
+    const [activeLayout, setActiveLayout] = useState(null);
     const [activeGlobalPanel, setActiveGlobalPanel] = useState(null);
-    const [spinner, setSpinner] = useReducer((state, spinner) => {
+    const [ activeLocalPanel, setActiveLocalPanel ] = useState(false);
+    const { spinner, setSpinnerState, setText, text, spinnerRender } = useSpinnerState(id);
 
-        if (spinner) {
-            setError(null);
-        }
-
-        return spinner;
-    }, true);
-
-    useEffect( async() => {
-        setSpinner(true);
-		var vkData = await VKBridge.send("VKWebAppGetUserInfo");
+    useEffect(async () => {
+        setText("Загружаем беседы...");
+        setSpinnerState(true);
+        var vkData = await VKBridge.send("VKWebAppGetUserInfo");
         var userId = vkData.id;
         setVkUserId(userId);
         hotaruPing();
@@ -51,25 +47,30 @@ export function RootLayoutChat({ id }) {
 
     useEffect(() => {
         setActiveLayout(WhichLayout());
-    }, [activeGlobalPanel, chatUserData]);
+    }, [activeGlobalPanel, activeLocalPanel]);
 
     const getUserChats = (userId) => {
         axios.get(`https://blowoutbots.somee.com/api/GetUserChats?userId=${userId}`)
             .then(({ data }) => {
-                setDataChat(data);
-                setSpinner(false);
+                setDataChats(data);
+                setSpinnerState(false);
             })
     };
 
+    const rootBack = () => {
+        setActiveLocalPanel(false);
+        setActiveGlobalPanel(null);
+    }
+
     const WhichLayout = () => {
-        if(activeGlobalPanel != null && activeGlobalPanel.length > 0){
+        if (activeGlobalPanel != null && activeGlobalPanel.length > 0) {
             return (<Fragment key="layout__global">
-                <GlobalLayout userId={userId} setActiveGlobalPanel={setActiveGlobalPanel} activeGlobalPanel={activeGlobalPanel}/>
-                </Fragment>)
-        }else if(chatUserData != null){
+                <GlobalLayout userId={userId} setActiveGlobalPanel={setActiveGlobalPanel} activeGlobalPanel={activeGlobalPanel} />
+            </Fragment>)
+        } else if (activeLocalPanel != false) {
             return (
-            <Fragment key="layout__chat">
-                <Layout  chatId = {chatUserData.id} chatData = {chatUserData} userId = {userId} setUserChatData = {setCorrectDataChat}/>
+                <Fragment key="layout__chat">
+                    <Layout chatId={chatUserData.id} chatData={chatUserData} userId={userId} rootBack={rootBack} />
                 </Fragment>)
         }
     }
@@ -81,71 +82,79 @@ export function RootLayoutChat({ id }) {
             })
     }
 
-    if(spinner) return (
-        <Panel id={id}>
-            <CustomPanelHeader status="Загружаем беседы, подождите..."
-                               left={false}
-            />
-             <Spinner/>
-            <MainFooterInfo/>
-        </Panel>
-    )
+    const chooseChat = (chat) => {
+        setText("Загружаем вашу информацию в беседе...");
+        setSpinnerState(true);
+        setCorrectDataChat(chat);
+        updateBaseUser(userId, chat.id).onEnd(() => {
+            setActiveLocalPanel(true);
+            setSpinnerState(false);
+        });
+    }
 
-    if(!pinged) return(
+    if (spinner) return (<Panel id={id}>
+        <CustomPanelHeader status={text}
+            left={false}
+        />
+        <Spinner />
+        <MainFooterInfo />
+    </Panel>);
+
+    if (!pinged) return (
         <Panel id={id}>
             <CustomPanelHeader status="Бот Хотару на технических работах :("
-                               left={false}
+                left={false}
             />
-             <OfflineBlock botDisabled={true}/>
-            <MainFooterInfo/>
+            <OfflineBlock botDisabled={true} />
+            <MainFooterInfo />
         </Panel>
     )
 
     return (
         <Panel id={id}>
-        {
-        (activeLayout == null) ?
-        <Fragment key="RootLayout__">
-            <CustomPanelHeader status="Выберите свой чат"
-                               left={false}
-            />
-        <Group>
-            <Group mode="plain">
-                  <Header mode="secondary">Список доступных бесед</Header>
-                  {
-                  chatsData.map((chat, index) => {
-                    return ( <Fragment key={id}>
-                  <SimpleCell onClick={()=> { setCorrectDataChat(chat)}} expandable before={<Avatar src= {chat.avatar == "" ? "https://sun9-43.userapi.com/gfufLV5NUTMENAtQ9Yo-m6huuJmgx0hFlYG2nA/oYS0Abp0iAw.jpg" : chat.avatar}/>} after={<IconButton onClick={() => { setCorrectDataChat(chat);}}><Icon28LinkOutline/></IconButton>}>{chat.title}</SimpleCell>
-                    </Fragment>
-                    )
-                  })
-                }
-            </Group>
-            <Group mode ="plain">
-            <Header mode="secondary">Глобальные сети</Header>
-                {
-                    globalPanels.map((panel, index) =>{
-                        return ( <Fragment key={`global__${panel.id}`}>
-                            <SimpleCell before={panel.icon}
-                                                        onClick={() =>  setActiveGlobalPanel(panel.id)}
-                                                        size="m"
-                                                        multiline
-                                                        description={panel.description}
+            {
+                (activeLayout == null) ?
+                    <Fragment key="RootLayout__">
+                        <CustomPanelHeader status="Выберите свой чат"
+                            left={false}
+                        />
+                        <Group>
+                            <Group mode="plain">
+                                <Header mode="secondary">Список доступных бесед</Header>
+                                {
+                                    chatsData.map((chat, index) => {
+                                        return (<Fragment key={id}>
+                                            <SimpleCell onClick={() => { chooseChat(chat) }} expandable before={<Avatar src={chat.avatar == "" ? "https://sun9-43.userapi.com/gfufLV5NUTMENAtQ9Yo-m6huuJmgx0hFlYG2nA/oYS0Abp0iAw.jpg" : chat.avatar} />} after={<IconButton onClick={() => { setCorrectDataChat(chat); }}><Icon28LinkOutline /></IconButton>}>{chat.title}</SimpleCell>
+                                        </Fragment>
+                                        )
+                                    })
+                                }
+                            </Group>
+                            <Group mode="plain">
+                                <Header mode="secondary">Глобальные сети</Header>
+                                {
+                                    globalPanels.map((panel, index) => {
+                                        return (<Fragment key={`global__${panel.id}`}>
+                                            <SimpleCell before={panel.icon}
+                                                onClick={() => setActiveGlobalPanel(panel.id)}
+                                                size="m"
+                                                multiline
+                                                description={panel.description}
                                             >
                                                 {
                                                     panel.title
                                                 }
                                             </SimpleCell>
-                              </Fragment>
-                              )
-                    })
-                }
-            </Group>
-        </Group>
-        </Fragment>
-        : activeLayout
-        }
-        <MainFooterInfo/>
+                                        </Fragment>
+                                        )
+                                    })
+                                }
+                            </Group>
+                        </Group>
+                    </Fragment>
+                    : activeLayout
+            }
+            <MainFooterInfo />
         </Panel>
     )
 }

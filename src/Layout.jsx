@@ -4,14 +4,14 @@ import { useRouter, useStructure, useSwipeBack } from "@unexp/router";
 
 // Панели
 import { Home, SendMessage, UserProfile, SettingsMenu, MainSettings, SendAnonimRp, CreationPool, CreationPoolRp, CustomRpList, CreationPoolAchivements, CustomAchivementsList, NotificationSettings, LimitsSettings, OperativeForm } from "./panels";
-import { QuarantineZoneSettings, ForbiddenCommandsSettings, ChatModeSettings, ExodusSettings, RolesSettings, CustomRoleAdd, CustomRoleList, CreationPool_Currency, MashupNetPanel } from "./panels";
+import { QuarantineZoneSettings, Projects, ForbiddenCommandsSettings, ChatModeSettings, WarPool, ExodusSettings, RolesSettings, CustomRoleAdd, CustomRoleList, CreationPool_Currency, MashupNetPanel } from "./panels";
 // Модалки
-import { CardsPreview, KeyCardPreview, ValutesPreview, MoneyPreview } from "./modals";
+import { CardsPreview, KeyCardPreview, ValutesPreview, MoneyPreview, ProjectInvestModal } from "./modals";
 //
 
 import { useAppearance } from "./hooks";
 
-export function Layout({ chatId, chatData, userId, setUserChatData }) {
+export function Layout({ chatId, chatData, userId, setUserChatData, rootBack }) {
 
     const { setPlatform } = useAppearance();
     const { viewWidth } = useAdaptivity();
@@ -36,6 +36,7 @@ export function Layout({ chatId, chatData, userId, setUserChatData }) {
                              <KeyCardPreview id="userProfile-passes-preview"/>
                              <ValutesPreview id="userProfile-valutes-preview"/>
                              <MoneyPreview id="userProfile-money-preview"/>
+                             <ProjectInvestModal id="project-modal-invest"/>
                          </ModalRoot>
                      }
                      activeView={view}
@@ -48,7 +49,7 @@ export function Layout({ chatId, chatData, userId, setUserChatData }) {
                       activePanel={panel}
                       {...useSwipeBack()}
                 >
-                    <Home id="home" chatId = {chatId} chatData = {chatData} setUserChatData = {setUserChatData}/>
+                    <Home id="home" chatId = {chatId} chatData = {chatData} rootBack = {rootBack}/>
                     <UserProfile id = "userInfoProfile" chatId = {chatId} userId = {userId}/>
                     <SendMessage id = "sendMessage" chatId = {chatId}/>
                     <SettingsMenu id = "settings" chatData = {chatData}/>
@@ -69,7 +70,8 @@ export function Layout({ chatId, chatData, userId, setUserChatData }) {
                     <CustomRoleAdd id="settings_roles_add" chatId={chatId} chatData={chatData}/>
                     <CustomRoleList id="settings_roles_list" chatId={chatId} chatData={chatData} setPopoutElement={setPopoutElement}/>
                     <OperativeForm id="userProfile_operative"/>
-                    <MashupNetPanel id="mashupNet"/>
+                    <WarPool id="warPool"/>
+                    <Projects id="war_projects" userId={userId} chatData={chatData}/>
                     <CreationPool_Currency id="creationPool_customCurrencyRp"/>
                 </View>
             </SplitCol>

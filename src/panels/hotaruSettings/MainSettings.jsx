@@ -4,7 +4,7 @@ import { CustomPanelHeader } from "../../components";
 import { sendBotPayload } from "../../hooks";
 import { Icon16DoneCircle } from '@vkontakte/icons';
 
-export function MainSettings({ id, chatData, chatId, setUserChatData }) {
+export function MainSettings({ id, chatData, chatId }) {
 
   const [anonymRpPrice, setAnonymRpPrice] = useState(chatData.settings.costs.anonimRp);
   const [createRpPrice, setCreateRpPrice] = useState(chatData.settings.costs.rp);

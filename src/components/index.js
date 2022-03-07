@@ -8,6 +8,7 @@ export { ScrollToUp } from "./ScrollToUp";
 export { TabsSelect } from "./TabsSelect";
 export { AppearanceProvider } from "./AppearanceProvider";
 export { InfinityScroll } from "./InfinityScroll";
+export { DatabaseProvider } from "./DatabaseProvider";
 
 export { FavoriteList } from "./FavoriteList";
 export { InputWithFavorite } from "./InputWithFavorite";
