@@ -6,7 +6,7 @@ import mVKMiniAppsScrollHelper from "@vkontakte/mvk-mini-apps-scroll-helper";
 
 import { AppearanceProvider } from "./components";
 import { BotVersionProvider } from "./components/BotVersionProvider";
-import { DatabaseProvider } from "./components";
+import { DatabaseProvider, PopoutProvider } from "./components";
 import { App } from "./App";
 
 import "core-js";
@@ -25,9 +25,11 @@ if (Os === IOS) {
 ReactDOM.render(
     <BotVersionProvider>
     <DatabaseProvider>
+    <PopoutProvider>
     <AppearanceProvider>
         <App/>
     </AppearanceProvider>
+    </PopoutProvider>
     </DatabaseProvider>
     </BotVersionProvider>,
     root

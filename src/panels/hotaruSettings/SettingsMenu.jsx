@@ -4,59 +4,60 @@ import { Icon28Notification, Icon28PenKeyholeOutline, Icon28SnowflakeOutline, Ic
 import { CustomPanelHeader } from "../../components";
 import { sendBotPayload } from "../../hooks";
 import { useRouter } from "@unexp/router";
+import * as panelIds from "../../panelsId"
 
 const settingsPanel = [
     {
-        id: "settings_main",
+        id: panelIds.SETTINGS_MAIN_ID,
         title: "Настройки чата",
         description: "Настройка нейрогенераторов, основных функций, работа с участниками и т.д",
         icon: <Icon28MessagesCircleFillYellow/>
     },
     {
-        id: "settings_notifications",
+        id: panelIds.SETTINGS_NOTIFICATIONS_ID,
         title: "Оповещения",
         description: "Настройка отправки различных оповещений в беседу",
         icon: <Icon28Notification/>
     },
     {
-        id: "settings_quarantineZone",
+        id: panelIds.SETTINGS_NOTIFICATIONS_ID,
         title: "Карантинная зона беседы",
         description: "Настройка макс. игроков, темы карантинной зоны, время сброса груза и т.д",
         icon: <Icon28SnowflakeOutline/>
     },
     {
-        id: "settings_limitsSettings",
+        id: panelIds.SETTINGS_LIMIT_ID,
         title: "Лимиты для участников",
         description: "Настройка максимального кол-ва сбора карт общения.",
         icon: <Icon28LockOutline/>
     },
     {
-        id: "settings_forbiddenCommands",
+        id: panelIds.SETTINGS_FORBIDDEN_COMMANDS_ID,
         title: "Запрещённые команды",
         description: "Отключение различных команд для беседы.",
         icon: <Icon28PenKeyholeOutline/>
     },
     {
-        id: "settings_chatMode",
+        id: panelIds.SETTINS_CHAT_MODE_ID,
         title: "Режим беседы",
         description: "Настройка режима работы Хотару в беседе. Важный пункт настройки.",
         icon: <Icon28StarsCircleFillViolet/>
     },
     {
-        id: "settings_exodus",
+        id: panelIds.SETTINGS_EXODUS_ID,
         title: "Исходы",
         description: "Настройка исходов для различных событий в беседе (проигрыш в города, в дуэли и т.д).",
         icon: <Icon28GhostSimleOutline/>
     },
     {
-        id: "settings_roles",
+        id: panelIds.SETTINGS_ROLE_ID,
         title: "Роли",
         description: "Настройка и создание различных ролей для беседы.",
         icon: <Icon28AccessibilityOutline/>
     }
 ];
 
-export function SettingsMenu({ id, chatId, chatData }) {
+export function SettingsMenu({ id }) {
 
     const { push } = useRouter();
 

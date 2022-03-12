@@ -1,45 +1,20 @@
-import React, { Fragment, useState, useReducer, useEffect } from "react";
-import { Panel, Placeholder, Group, Snackbar, Alert, Cell, List } from "@vkontakte/vkui";
+import React, { Fragment, useState, useEffect } from "react";
+import { Panel, Placeholder, Group, Snackbar, Cell, List } from "@vkontakte/vkui";
 import { Icon16Clear, Icon48Block } from '@vkontakte/icons';
 import { CustomPanelHeader } from "../../components";
-import { sendBotPayload } from "../../hooks";
-import { useRouter } from "@unexp/router";
+import { AlertActionsParameters, sendBotPayload, useAlert } from "../../hooks";
 
-export function CustomRpList({ id, chatId, chatData, setPopoutElement }) {
+export function CustomRpList({ id, chatId, chatData }) {
     const [mount, setMount] = useState(true);
-    const [error, setError] = useState(null);
     const [snackbar, setSnackbar ] = useState(null);
-    const { push } = useRouter();
-    const [spinner, setSpinner] = useReducer((state, spinner) => {
-
-        if (spinner) {
-            setError(null);
-        }
-        return spinner;
-    }, true);
+    const summonPopout = useAlert();
 
     useEffect(() => {
         return () => setMount(false);
     }, []);
 
-    const OnClosePopout = () => setPopoutElement(null);
-
     const AlertRemoveRpCommand = (index) => {
-        setPopoutElement(
-            <Alert
-            actions={[{
-              title: 'Отмена',
-              autoclose: true,
-            }, {
-              title: 'Удалить',
-              autoclose: true,
-              action: () => RemoveRpCommand(index),
-            }]}
-            actionsLayout="horizontal"
-            onClose={OnClosePopout}
-            header="Удаление кастомной Рп команды"
-            text="Вы уверены, что хотите удалить эту Рп команду?"
-          />)
+        summonPopout([new AlertActionsParameters("Отмена", true), new AlertActionsParameters("Удалить", true, () => RemoveRpCommand(index))], "Удаление кастомной Рп команды", "Вы уверены, что хотите удалить эту Рп команду?");
     }
 
     const RemoveRpCommand = (index) => {

@@ -3,12 +3,12 @@ export { SendMessage } from "./sendMessagePanel/SendMessagePanel";
 export { UserProfile } from "./userProfile/UserProfile";
 export { SettingsMenu } from "./hotaruSettings/SettingsMenu";
 export { MainSettings } from "./hotaruSettings/MainSettings";
-export { SendAnonimRp } from "./sendAnonimRp/SendAnonimRp";
+export { SendAnonymRp } from "./sendAnonimRp/SendAnonimRp";
 export { CreationPool } from "./creationPool/CreationPool";
 export { CreationPoolRp } from "./creationPool/CreationPoolRp";
 export { CustomRpList } from "./creationPool/CustomRpList";
-export { CreationPoolAchivements } from "./creationPool/CreationPool_Achivements";
-export { CustomAchivementsList } from "./creationPool/CustomAchievementsList";
+export { CreationPoolAchievements } from "./creationPool/CreationPool_Achivements";
+export { CustomAchievementsList } from "./creationPool/CustomAchievementsList";
 export { NotificationSettings } from "./hotaruSettings/NortificationSettings";
 export { QuarantineZoneSettings } from "./hotaruSettings/QuarantineZoneSettings";
 export { LimitsSettings } from "./hotaruSettings/LimitsSettings";
@@ -21,4 +21,6 @@ export { CustomRoleList } from "./creationPool/CustomRoleList";
 export { OperativeForm } from "./userProfile/OperativeForm";
 export { CreationPool_Currency } from "./creationPool/CreationPoll_Currency";
 export { MashupNetPanel } from "./global/MashupNetList";
-export { WarPool, Projects } from "./war"
+export { WarPool, Projects } from "./war";
+export { TalkCards } from "./chat/TalkCards";
+export { BankBuyCard } from "./bank/BankBuyCard"

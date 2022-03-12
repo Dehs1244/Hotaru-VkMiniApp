@@ -47,8 +47,10 @@
     ]
   },
   "devDependencies": {
+    "@types/react": "^17.0.40",
     "@vkontakte/vk-miniapps-deploy": "^0.0.25",
     "cross-env": "^7.0.3",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^4.0.3",
+    "typescript": "^4.6.2"
   }
 }

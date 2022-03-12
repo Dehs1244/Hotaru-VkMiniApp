@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { PanelHeader, SplitCol, SplitLayout, ModalRoot, View, ViewWidth, platform, useAdaptivity } from "@vkontakte/vkui";
 import { useRouter, useStructure, useSwipeBack } from "@unexp/router";
+import * as panelIds from "./panelsId";
+import * as modalsIds from "./modalsId";
 
 // Панели
-import { Home, SendMessage, UserProfile, SettingsMenu, MainSettings, SendAnonimRp, CreationPool, CreationPoolRp, CustomRpList, CreationPoolAchivements, CustomAchivementsList, NotificationSettings, LimitsSettings, OperativeForm } from "./panels";
-import { QuarantineZoneSettings, Projects, ForbiddenCommandsSettings, ChatModeSettings, WarPool, ExodusSettings, RolesSettings, CustomRoleAdd, CustomRoleList, CreationPool_Currency, MashupNetPanel } from "./panels";
+import * as Panels from "./panels";
 // Модалки
-import { CardsPreview, KeyCardPreview, ValutesPreview, MoneyPreview, ProjectInvestModal } from "./modals";
+import { CardsPreview, KeyCardPreview, ValutesPreview, MoneyPreview, ProjectInvestModal, BankCardsPreview } from "./modals";
 //
+import { useAppearance, useRootPopout } from "./hooks";
 
-import { useAppearance } from "./hooks";
-
-export function Layout({ chatId, chatData, userId, setUserChatData, rootBack }) {
+export function Layout({ chatId, chatData, userId, rootBack }) {
 
     const { setPlatform } = useAppearance();
     const { viewWidth } = useAdaptivity();
-    const { view, modal, panel } =  useStructure({ view: "home", panel: "home", popout: null });
+    const { view, modal, panel } =  useStructure({ view: "home", panel: "home" });
     const { back } = useRouter();
-    const [popout, setPopoutElement] = useState(null);
+    const [popout, setPopoutElement] = useRootPopout();
 
 
     useEffect(() => {
@@ -32,11 +32,12 @@ export function Layout({ chatId, chatData, userId, setUserChatData, rootBack }) 
                          <ModalRoot activeModal={modal}
                                     onClose={back}
                          >
-                             <CardsPreview id="userProfile-cards-preview"/>
-                             <KeyCardPreview id="userProfile-passes-preview"/>
-                             <ValutesPreview id="userProfile-valutes-preview"/>
-                             <MoneyPreview id="userProfile-money-preview"/>
-                             <ProjectInvestModal id="project-modal-invest"/>
+                             <CardsPreview id={modalsIds.USER_PROFILE_CARDS_ID}/>
+                             <KeyCardPreview id={modalsIds.USER_PROFILE_PASSES_ID}/>
+                             <ValutesPreview id={modalsIds.USER_PROFILE_VALUTES_ID}/>
+                             <MoneyPreview id={modalsIds.USER_PROFILE_MONEY_ID}/>
+                             <ProjectInvestModal id={modalsIds.PROJECTS_INVEST_ID}/>
+                             <BankCardsPreview id={modalsIds.USER_PROFILE_BANKS_ID}/>
                          </ModalRoot>
                      }
                      activeView={view}
@@ -49,30 +50,32 @@ export function Layout({ chatId, chatData, userId, setUserChatData, rootBack }) 
                       activePanel={panel}
                       {...useSwipeBack()}
                 >
-                    <Home id="home" chatId = {chatId} chatData = {chatData} rootBack = {rootBack}/>
-                    <UserProfile id = "userInfoProfile" chatId = {chatId} userId = {userId}/>
-                    <SendMessage id = "sendMessage" chatId = {chatId}/>
-                    <SettingsMenu id = "settings" chatData = {chatData}/>
-                    <SendAnonimRp id = "sendAnonimRp" chatId = {chatId} chatData = {chatData}/>
-                    <MainSettings id="settings_main" chatData = {chatData} chatId = {chatId} setUserChatData = {setUserChatData}/>
-                    <CreationPool id = "creationPool"/>
-                    <CreationPoolRp id = "creationPool_rp" chatId = {chatId} chatData = {chatData}/>
-                    <CustomRpList id = "creationPool_customRpList" chatId = {chatId} chatData = {chatData} setPopoutElement = {setPopoutElement}/>
-                    <CreationPoolAchivements id = "creationPool_achivementsCreate" chatId = {chatId} chatData = {chatData} />
-                    <CustomAchivementsList id="creationPoll_achivementsList" chatId = {chatId} chatData = {chatData} setPopoutElement = {setPopoutElement}/>
-                    <NotificationSettings id="settings_notifications" chatData={chatData} chatId={chatId}/>
-                    <QuarantineZoneSettings id = "settings_quarantineZone" chatData = {chatData} chatId = {chatId}/>
-                    <LimitsSettings id="settings_limitsSettings" chatData={chatData} chatId={chatId}/>
-                    <ForbiddenCommandsSettings id="settings_forbiddenCommands" chatData={chatData} chatId={chatId}/>
-                    <ChatModeSettings id="settings_chatMode" chatData={chatData} chatId={chatId} SetPopout={setPopoutElement}/>
-                    <ExodusSettings id="settings_exodus" chatId={chatId} chatData={chatData}/>
-                    <RolesSettings id="settings_roles" chatId={chatId} chatData={chatData} setPopoutElement={setPopoutElement} />
-                    <CustomRoleAdd id="settings_roles_add" chatId={chatId} chatData={chatData}/>
-                    <CustomRoleList id="settings_roles_list" chatId={chatId} chatData={chatData} setPopoutElement={setPopoutElement}/>
-                    <OperativeForm id="userProfile_operative"/>
-                    <WarPool id="warPool"/>
-                    <Projects id="war_projects" userId={userId} chatData={chatData}/>
-                    <CreationPool_Currency id="creationPool_customCurrencyRp"/>
+                    <Panels.Home id={panelIds.HOME_ID} userId={userId} chatId = {chatId} chatData = {chatData} rootBack = {rootBack}/>
+                    <Panels.UserProfile id = {panelIds.USER_PROFILE_ID} chatId = {chatId} userId = {userId}/>
+                    <Panels.SendMessage id = {panelIds.SEND_MESSAGE_ID} chatId = {chatId}/>
+                    <Panels.SettingsMenu id = {panelIds.SETTINGS_ID} chatData = {chatData}/>
+                    <Panels.SendAnonymRp id = {panelIds.SEND_ANONIM_RP_ID} chatId = {chatId} chatData = {chatData}/>
+                    <Panels.MainSettings id={panelIds.SETTINGS_MAIN_ID} chatData = {chatData} chatId = {chatId}/>
+                    <Panels.CreationPool id = {panelIds.CREATION_POOL_ID}/>
+                    <Panels.CreationPoolRp id = {panelIds.CREATION_POOL_RP_ID} chatId = {chatId} chatData = {chatData}/>
+                    <Panels.CustomRpList id = {panelIds.CREATION_POOL_LISTRP_ID} chatId = {chatId} chatData = {chatData}/>
+                    <Panels.CreationPoolAchievements id = {panelIds.CREATION_POOL_ACHIVEMENTS_ID} chatId = {chatId} chatData = {chatData} />
+                    <Panels.CustomAchievementsList id={panelIds.CREATION_POOL_LISTACHIVEMENTS_ID} chatId = {chatId} chatData = {chatData} setPopoutElement = {setPopoutElement}/>
+                    <Panels.NotificationSettings id={panelIds.SETTINGS_NOTIFICATIONS_ID} chatData={chatData} chatId={chatId}/>
+                    <Panels.QuarantineZoneSettings id = {panelIds.SETTINGS_QUARANTINE_ZONE_ID} chatData = {chatData} chatId = {chatId}/>
+                    <Panels.LimitsSettings id= {panelIds.SETTINGS_LIMIT_ID} chatData={chatData} chatId={chatId}/>
+                    <Panels.ForbiddenCommandsSettings id= {panelIds.SETTINGS_FORBIDDEN_COMMANDS_ID} chatData={chatData} chatId={chatId}/>
+                    <Panels.ChatModeSettings id= {panelIds.SETTINS_CHAT_MODE_ID} chatData={chatData} chatId={chatId} SetPopout={setPopoutElement}/>
+                    <Panels.ExodusSettings id= {panelIds.SETTINGS_EXODUS_ID} chatId={chatId} chatData={chatData}/>
+                    <Panels.RolesSettings id= {panelIds.SETTINGS_ROLE_ID} chatId={chatId} chatData={chatData} setPopoutElement={setPopoutElement} />
+                    <Panels.CustomRoleAdd id={panelIds.SETTINGS_ROLES_ADD_ID} chatId={chatId} chatData={chatData}/>
+                    <Panels.CustomRoleList id= {panelIds.SETTINGS_LISTROLES_ID} chatId={chatId} chatData={chatData} setPopoutElement={setPopoutElement}/>
+                    <Panels.OperativeForm id={panelIds.USER_PROFILE_OPERATIVES_ID}/>
+                    <Panels.WarPool id= {panelIds.WAR_POOL}/>
+                    <Panels.Projects id= {panelIds.WAR_PROJECTS_ID} userId={userId} chatData={chatData}/>
+                    <Panels.CreationPool_Currency id= {panelIds.CREATION_POOL_CUSTOM_CURRENCY_ID}/>
+                    <Panels.TalkCards id= {panelIds.TALK_CARDS_ID}/>
+                    <Panels.BankBuyCard id= {panelIds.BANK_BUY_CARD_ID}/>
                 </View>
             </SplitCol>
         </SplitLayout>

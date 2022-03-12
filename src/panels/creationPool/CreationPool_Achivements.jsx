@@ -9,7 +9,7 @@ import EmojiData from "react-twemoji-picker/data/twemoji.json";
 import "react-twemoji-picker/dist/EmojiPicker.css"
 import { convertFileToBase64 } from "../../functions";
 
-export function CreationPoolAchivements({ id, chatId, chatData }) {
+export function CreationPoolAchievements({ id, chatId, chatData }) {
     const [mount, setMount] = useState(true);
     const [error, setError] = useState(null);
     const [spinner, setSpinner] = useReducer((state, spinner) => {

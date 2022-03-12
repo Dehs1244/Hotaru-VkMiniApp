@@ -1,12 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useRouter } from "@unexp/router";
-import { Panel, Group, SimpleCell, Header, Div, Title, Banner, Button } from "@vkontakte/vkui";
+import { Panel, Group, SimpleCell, Header, Div, Title, Banner, Button, Headline } from "@vkontakte/vkui";
 
 import { IconCards, IconKeysCarding } from "../../icons";
 import { Icon28MoneyCircleOutline, Icon28BankOutline } from '@vkontakte/icons';
 import operative1Image from "../../assets/imgs/operatives/operative_1.jpg"
 import operative2Image from "../../assets/imgs/operatives/operative_2.png"
 import { Icon28ZipOutline, Icon28PaymentCardOutline } from '@vkontakte/icons';
+import * as panelIds from "../../panelsId";
+import * as modalIds from "../../modalsId";
 
 export function Form({ id, userProfile }) {
     const { push } = useRouter();
@@ -29,11 +31,14 @@ export function Form({ id, userProfile }) {
                 <Div>
                     <Title level="3" weight="bold">Профиль пользователя</Title>
                     <Title level="1" weight="heavy">{userProfile.prefix}</Title>
+                    <Headline weight="semibold" style={{ marginTop: 16 }}>
+          Очки актива в беседе: {userProfile.mesg}
+        </Headline>
                 </Div>
             </Group>
             <Group header={<Header mode="secondary">Валюта</Header>}>
-                <SimpleCell onClick={() => push({ modal: "userProfile-cards-preview" }, { userProfile })} expandable before={<IconCards />}>Карты</SimpleCell>
-                <SimpleCell onClick={() => push({ modal: "userProfile-money-preview" }, { userProfile })} expandable before={<Icon28ZipOutline />}>Денежные средства</SimpleCell>
+                <SimpleCell onClick={() => push({ modal: modalIds.USER_PROFILE_CARDS_ID }, { userProfile })} expandable before={<IconCards />}>Карты</SimpleCell>
+                <SimpleCell onClick={() => push({ modal: modalIds.USER_PROFILE_MONEY_ID }, { userProfile })} expandable before={<Icon28ZipOutline />}>Денежные средства</SimpleCell>
             </Group>
 
             {
@@ -58,7 +63,7 @@ export function Form({ id, userProfile }) {
                                         }}
                                     />
                                 }
-                                actions={<Button onClick = {() => push({ panel: "userProfile_operative"}, { operative: operatives[index], operIndx: index, cardInfo: operative_images[index] })} mode="overlay_primary">Подробнее</Button>}
+                                actions={<Button onClick = {() => push({ panel: panelIds.USER_PROFILE_OPERATIVES_ID}, { operative: operatives[index], operIndx: index, cardInfo: operative_images[index] })} mode="overlay_primary">Подробнее</Button>}
                             />
                             </>
                             )
@@ -68,13 +73,13 @@ export function Form({ id, userProfile }) {
             }
 
             <Group header={<Header mode="secondary">Экономика</Header>}>
-                <SimpleCell onClick={() => push({ modal: "userProfile-valutes-preview" }, { userProfile })} expandable before={<Icon28BankOutline />}>Банк</SimpleCell>
-                <SimpleCell onClick={() => push({ modal: "userProfile-passes-preview" }, { userProfile })} expandable before={<Icon28PaymentCardOutline />}>Банковские карты</SimpleCell>
+                <SimpleCell onClick={() => push({ modal: modalIds.USER_PROFILE_CARDS_ID }, { userProfile })} expandable before={<Icon28BankOutline />}>Банк</SimpleCell>
+                <SimpleCell onClick={() => push({ modal: modalIds.USER_PROFILE_BANKS_ID })} expandable before={<Icon28PaymentCardOutline />}>Банковские карты</SimpleCell>
             </Group>
 
             <Group header={<Header mode="secondary">Другое</Header>}>
-                <SimpleCell onClick={() => push({ modal: "userProfile-valutes-preview" }, { userProfile })} expandable before={<Icon28MoneyCircleOutline />}>Другая валюта</SimpleCell>
-                <SimpleCell onClick={() => push({ modal: "userProfile-passes-preview" }, { userProfile })} expandable before={<IconKeysCarding />}>Пропуски</SimpleCell>
+                <SimpleCell onClick={() => push({ modal: modalIds.USER_PROFILE_VALUTES_ID }, { userProfile })} expandable before={<Icon28MoneyCircleOutline />}>Другая валюта</SimpleCell>
+                <SimpleCell onClick={() => push({ modal: modalIds.USER_PROFILE_PASSES_ID }, { userProfile })} expandable before={<IconKeysCarding />}>Пропуски</SimpleCell>
             </Group>
         </Panel>
     )

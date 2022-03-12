@@ -27,3 +27,7 @@ export const LoadHotaruMashupNet = async () => {
   });
   return mashupNet;
 }
+
+export const GetPeerIdFromChatId = (chatId) => {
+  return 2000000000 + chatId;
+}

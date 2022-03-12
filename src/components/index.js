@@ -9,6 +9,7 @@ export { TabsSelect } from "./TabsSelect";
 export { AppearanceProvider } from "./AppearanceProvider";
 export { InfinityScroll } from "./InfinityScroll";
 export { DatabaseProvider } from "./DatabaseProvider";
+export { PopoutProvider } from "./PopoutProvider";
 
 export { FavoriteList } from "./FavoriteList";
 export { InputWithFavorite } from "./InputWithFavorite";

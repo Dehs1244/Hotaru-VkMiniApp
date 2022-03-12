@@ -3,7 +3,6 @@ build
 build.zip
 bundle.zip
 .eslintcache
-DevStart.bat
 BuildApplication.bat
 DeplotVkHosting.bat
 .vscode

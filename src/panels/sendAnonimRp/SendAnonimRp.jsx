@@ -10,7 +10,7 @@ import { CustomPanelHeader, Spinner } from "../../components";
 import { sendBotPayload, useVkSnackbar } from "../../hooks";
 import FormData from "form-data"
 
-export function SendAnonimRp({ id, chatId, chatData }) {
+export function SendAnonymRp({ id, chatId, chatData }) {
     const [anonim, setAnonim ] = useState('');
     const [mount, setMount] = useState(true);
     const [membersInfo, setMembersInfo] = useState(null);

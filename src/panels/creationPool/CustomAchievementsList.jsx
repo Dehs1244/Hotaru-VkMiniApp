@@ -1,30 +1,15 @@
 import React, { Fragment, useState,} from "react";
-import { Panel, Placeholder, Group, Snackbar, Alert, Cell, List } from "@vkontakte/vkui";
+import { Panel, Placeholder, Group, Snackbar, Cell, List } from "@vkontakte/vkui";
 import { Icon16Clear, Icon48Block } from '@vkontakte/icons';
 import { CustomPanelHeader } from "../../components";
-import { sendBotPayload } from "../../hooks";
+import { sendBotPayload, useAlert, AlertActionsParameters } from "../../hooks";
 
-export function CustomAchivementsList({ id, chatId, chatData, setPopoutElement }) {
+export function CustomAchievementsList({ id, chatId, chatData }) {
     const [snackbar, setSnackbar ] = useState(null);
-
-    const OnClosePopout = () => setPopoutElement(null);
+    const summonPopout = useAlert();
 
     const AlertRemoveAchievement = (index) => {
-        setPopoutElement(
-            <Alert
-            actions={[{
-              title: 'Отмена',
-              autoclose: true,
-            }, {
-              title: 'Удалить',
-              autoclose: true,
-              action: () => RemoveAchievement(index),
-            }]}
-            actionsLayout="horizontal"
-            onClose={OnClosePopout}
-            header="Удаление кастомной ачивки"
-            text="Вы уверены, что хотите удалить эту ачивку?"
-          />)
+      summonPopout([new AlertActionsParameters("Отмена", true), new AlertActionsParameters("Удалить", true, () => RemoveAchievement(index))], "Удаление кастомной ачивки", "Вы уверены, что хотите удалить эту ачивку?");
     }
 
     const RemoveAchievement = (index) => {
