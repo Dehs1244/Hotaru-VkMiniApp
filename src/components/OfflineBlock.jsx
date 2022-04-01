@@ -4,7 +4,7 @@ import { Button } from "@vkontakte/vkui";
 
 import { Error } from "./Error";
 
-export function OfflineBlock({ botDisabled }) {
+export function OfflineBlock({ botDisabled, appBlockClass }) {
     return (
         <Error header="Ой..."
                action={
@@ -20,6 +20,9 @@ export function OfflineBlock({ botDisabled }) {
         >
             { botDisabled ?
             "Хотару Мейд-бот сейчас отключена, дождитесь включения бота и тогда мейд-приложение снова заработает."
+            :
+            appBlockClass != null ?
+            appBlockClass.reason
             :
             "Возможно пропало подключение к серверу!"
 }

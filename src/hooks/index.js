@@ -9,3 +9,4 @@ export { useDatabaseProvider } from "./databaseContext";
 export { useRootPopout } from "./popoutContext";
 export { useAlert } from "./popoutContext"
 export { AlertActionsParameters } from "./popoutContext"
+export { useLocalStorage } from "./localStorageHook";

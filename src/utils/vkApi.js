@@ -1,10 +1,17 @@
 import VKBridge from "@vkontakte/vk-bridge";
+import { useLocalStorage } from "../hooks";
+import getArgs from "vkappsutils/dist/Args";
 
-const VKTOKEN = "ab02842757dd19be25bd92bde264e6334fef9f1ec29464f1f2f0cc8d0c416845f778f902e4d58d8183255";
+const VKTOKEN = "34f3582f5284fe66460c64221e2dd8dffd0aca2982bd09cbb4c9b8f4496436a5ff61cf2ef689389df5288";
 const API_VERSION = "5.131";
 
 export async function vkCall(method, params)
 {
+    //const appArgs = getArgs();
+    //if(appArgs.access_token_settings != null){
+    //    //appArgs.access_token_settings = await VKBridge.send("VKWebAppGetAuthToken", {"app_id": Number(appArgs.app_id), "scope": "friends,status,wall"}).data.access_token;
+    //}
+    //console.log(await VKBridge.send("VKWebAppGetCommunityToken", {"app_id": Number(appArgs.app_id), "group_id": Number(appArgs.group_id), "scope": "messages"}));
     let modifyParams = {
         ...params,
         "v": API_VERSION,

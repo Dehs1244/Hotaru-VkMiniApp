@@ -71,6 +71,7 @@ const panels = [
         id: panelIds.SEND_MESSAGE_ID,
         title: "Отправить сообщение в беседу",
         isAdmin: false,
+        isHide: true,
         description: "Отправка сообщения от имени Хотару",
         icon: <Icon28EditOutline />
     }
@@ -154,10 +155,11 @@ export function Home({ id, userId, rootBack }) {
                                     size="l"
                                 >
                                     {
-                                        panels.map(({ id, title, description, icon, isAdmin, checkClient }, index) => {
+                                        panels.map(({ id, title, description, icon, isAdmin, isHide, checkClient }, index) => {
                                             if (checkClient && client === "ok") {
                                                 return;
                                             }
+                                            if(isHide) return;
 
                                             return isAdmin && !isUserAdmin ? null : (
                                                 <Fragment key={id}>

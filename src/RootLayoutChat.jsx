@@ -6,6 +6,7 @@ import { useStructure, useRouter } from "@unexp/router";
 import axios from "axios";
 import VKBridge from "@vkontakte/vk-bridge";
 import { useSpinnerState, useDatabaseProvider } from "./hooks";
+import getArgs from "vkappsutils/dist/Args";
 
 import { CustomPanelHeader, Spinner, MainFooterInfo, OfflineBlock } from "./components";
 
@@ -25,20 +26,21 @@ export function RootLayoutChat({ id }) {
     const [mount, setMount] = useState(true);
     const [chatsData, setDataChats] = useState(null);
     
-    const { chat: chatUserData, setChatData: setCorrectDataChat, updateBaseUser } = useDatabaseProvider();
+    const { chat: chatUserData, setChatData: setCorrectDataChat, updateBaseUser, updateAccountData } = useDatabaseProvider();
     const [userId, setVkUserId] = useState(0);
-    const [error, setError] = useState(null);
     const [pinged, setHotaruPing] = useState(false);
     const [activeLayout, setActiveLayout] = useState(null);
     const [activeGlobalPanel, setActiveGlobalPanel] = useState(null);
     const [ activeLocalPanel, setActiveLocalPanel ] = useState(false);
     const { spinner, setSpinnerState, setText, text, spinnerRender } = useSpinnerState(id);
+    const [ appBlock, setAppBlock ] = useState({ block: false, reason: null });
 
     useEffect(async () => {
         setText("Загружаем беседы...");
         setSpinnerState(true);
         var vkData = await VKBridge.send("VKWebAppGetUserInfo");
         var userId = vkData.id;
+        getUserAccount(userId);
         setVkUserId(userId);
         hotaruPing();
         getUserChats(userId);
@@ -48,6 +50,13 @@ export function RootLayoutChat({ id }) {
     useEffect(() => {
         setActiveLayout(WhichLayout());
     }, [activeGlobalPanel, activeLocalPanel]);
+
+    const getUserAccount = (userId) => {
+        updateAccountData(userId).onEnd(account => {
+            console.log(account);
+            if(!account.isVip) setAppBlock({ block: true, reason: "Приложение доступно только для вип-пользователей Хотару. Приобрести вип можно, задонатив нам на сумму 45 рублей." })
+        });
+    }
 
     const getUserChats = (userId) => {
         axios.get(`https://blowoutbots.somee.com/api/GetUserChats?userId=${userId}`)
@@ -92,6 +101,17 @@ export function RootLayoutChat({ id }) {
         });
     }
 
+    if (appBlock.block) return (
+        <Panel id={id}>
+            <CustomPanelHeader status="Мейд-приложение Хотару пока недоступно"
+                left={false}
+            />
+            <OfflineBlock appBlockClass={appBlock}/>
+            <MainFooterInfo />
+        </Panel>
+    )
+
+
     if (spinner) return (<Panel id={id}>
         <CustomPanelHeader status={text}
             left={false}
@@ -99,16 +119,6 @@ export function RootLayoutChat({ id }) {
         <Spinner />
         <MainFooterInfo />
     </Panel>);
-
-    if (!pinged) return (
-        <Panel id={id}>
-            <CustomPanelHeader status="Бот Хотару на технических работах :("
-                left={false}
-            />
-            <OfflineBlock botDisabled={true} />
-            <MainFooterInfo />
-        </Panel>
-    )
 
     return (
         <Panel id={id}>
