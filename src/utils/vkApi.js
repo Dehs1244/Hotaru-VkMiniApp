@@ -2,10 +2,9 @@ import VKBridge from "@vkontakte/vk-bridge";
 import { useLocalStorage } from "../hooks";
 import getArgs from "vkappsutils/dist/Args";
 
-const VKTOKEN = "34f3582f5284fe66460c64221e2dd8dffd0aca2982bd09cbb4c9b8f4496436a5ff61cf2ef689389df5288";
 const API_VERSION = "5.131";
 
-export async function vkCall(method, params)
+export async function vkCall(method, token, params)
 {
     //const appArgs = getArgs();
     //if(appArgs.access_token_settings != null){
@@ -15,7 +14,7 @@ export async function vkCall(method, params)
     let modifyParams = {
         ...params,
         "v": API_VERSION,
-        "access_token": VKTOKEN
+        "access_token": token
     }
     let data = await VKBridge.send("VKWebAppCallAPIMethod", {"method": method, "request_id": "hotaruRequest", "params": modifyParams});
     console.log(data);

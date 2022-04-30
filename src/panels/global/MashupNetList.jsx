@@ -3,11 +3,11 @@ import { Panel, Separator, Div, Title, Spacing, Snackbar, Button, Avatar, Simple
 import { CustomPanelHeader } from "../../components";
 import * as serverApi from "../../utils/hotaruServerApi";
 import { VkApiCaller } from "../../utils";
-import { Icon20LikeCircleFillRed, Icon20Like, Icon28PodcastCircleFillRed } from '@vkontakte/icons';
+import { Icon20LikeCircleFillRed, Icon20Like, Icon28PodcastCircleFillRed, Icon28ThumbsUpOutline } from '@vkontakte/icons';
 import { Spinner } from "../../components";
 import * as utils from "../../functions";
 import { IconPlay } from "../../icons";
-import { sendBotPayload } from "../../hooks";
+import { sendBotPayload, useUserToken } from "../../hooks";
 import "react-h5-audio-player/lib/styles.css";
 import "../../assets/styles/audioPlayer.css"
 import AudioPlayer from "react-h5-audio-player";
@@ -20,6 +20,7 @@ export function MashupNetPanel({ id, setActivePanel, userId }) {
     const { scheme, toggleScheme } = useAppearance();
     const snackbar = useVkSnackbar();
     const [usersInfo, setUsersInfo] = useState(null);
+    const [ token, setToken ] = useUserToken();
     const [spinner, setSpinner] = useReducer((state, spinner) => {
 
         if (spinner) {
@@ -33,7 +34,7 @@ export function MashupNetPanel({ id, setActivePanel, userId }) {
         setSpinner(true);
         let mashups = await serverApi.LoadHotaruMashupNet();
         setMashupNet(mashups);
-        setUsersInfo(await VkApiCaller.vkCall("users.get", { "user_ids": mashups.map(({ CreatorId }) => CreatorId).join(","), "fields": "photo_50" }));
+        setUsersInfo(await VkApiCaller.vkCall("users.get", token, { "user_ids": mashups.map(({ CreatorId }) => CreatorId).join(","), "fields": "photo_50" }));
         setSpinner(false);
         return () => false;
     }, [])
@@ -74,7 +75,7 @@ export function MashupNetPanel({ id, setActivePanel, userId }) {
                         • Инструментал — песня без вокала.
                         <br />
                         <br />
-                        • Здесь собраны все Мэшапы, которые были успешно созданы с помощью Хотару и команды «!мешап» прикрепляя акапеллу и инструментал.
+                        • Здесь собраны все Мэшапы, которые были успешно созданы с <strong>помощью Хотару и команды «!мешап»</strong> прикрепляя акапеллу и инструментал.
                         Чтобы попасть в #MashupNet нужно создать такой мэшап в любой беседе, тогда этот мэшап будет выступать от беседы, где и был создан.
                         Создавать мэшапы можно где угодно, но отправлять их нужно из беседы.
                         <br />
@@ -85,7 +86,7 @@ export function MashupNetPanel({ id, setActivePanel, userId }) {
                 </Group>
                 <Separator style={{ margin: "12px" }} />
                 {
-                    mashupNet.map((mashup, idx) => {
+                    mashupNet.filter(x=> x.Access == true).sort((a, b) => b.Likes.length - a.Likes.length).map((mashup, idx) => {
                         let userInfo = usersInfo.find((item) => item.id == mashup.CreatorId);
                         return (
                             <Fragment key={`${id}__${idx}`}>
@@ -110,6 +111,9 @@ export function MashupNetPanel({ id, setActivePanel, userId }) {
                                         >
                                             {userInfo.first_name} {userInfo.last_name}
                                         </SimpleCell>
+                                        <SimpleCell disabled before={<Icon28ThumbsUpOutline />}>
+                                                Лайков: {mashup.Likes.length}
+                                            </SimpleCell>
                                         <Div>
                                             <AudioPlayer
                                                 showJumpControls={false}

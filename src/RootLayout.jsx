@@ -5,7 +5,7 @@ import { Icon28MusicOutline } from '@vkontakte/icons';
 import { useStructure, useRouter } from "@unexp/router";
 import axios from "axios";
 import VKBridge from "@vkontakte/vk-bridge";
-import { useSpinnerState, useDatabaseProvider } from "./hooks";
+import { useSpinnerState, useDatabaseProvider, useLocalStorage } from "./hooks";
 import getArgs from "vkappsutils/dist/Args";
 
 import { CustomPanelHeader, Spinner, MainFooterInfo, OfflineBlock } from "./components";
@@ -22,11 +22,11 @@ const globalPanels = [
     }
 ];
 
-export function RootLayoutChat({ id }) {
+export function RootLayout({ id }) {
     const [mount, setMount] = useState(true);
     const [chatsData, setDataChats] = useState(null);
     
-    const { chat: chatUserData, setChatData: setCorrectDataChat, updateBaseUser, updateAccountData } = useDatabaseProvider();
+    const { chat: chatUserData, setChatData: setCorrectDataChat, updateBaseUser, updateAccountData, updateBaseChat } = useDatabaseProvider();
     const [userId, setVkUserId] = useState(0);
     const [pinged, setHotaruPing] = useState(false);
     const [activeLayout, setActiveLayout] = useState(null);
@@ -34,8 +34,18 @@ export function RootLayoutChat({ id }) {
     const [ activeLocalPanel, setActiveLocalPanel ] = useState(false);
     const { spinner, setSpinnerState, setText, text, spinnerRender } = useSpinnerState(id);
     const [ appBlock, setAppBlock ] = useState({ block: false, reason: null });
+    const { app_id } = getArgs();
+    const [ userToken, setUserToken ] = useLocalStorage("user_access_token", null);
 
     useEffect(async () => {
+        setText("Получаем информацию о вас...");
+        var tokenResult = await VKBridge.send("VKWebAppGetAuthToken", {"app_id": Number(app_id), "scope": "friends,status,notes"});
+        if(tokenResult.error_type != null) {
+            setAppBlock({ block: true, reason: "Приложению для дальнейшей работы нужно предоставить разрешение" })
+            return () => setMount(false);
+        }
+        setUserToken(tokenResult.access_token);
+        console.log(userToken);
         setText("Загружаем беседы...");
         setSpinnerState(true);
         var vkData = await VKBridge.send("VKWebAppGetUserInfo");
@@ -52,16 +62,13 @@ export function RootLayoutChat({ id }) {
     }, [activeGlobalPanel, activeLocalPanel]);
 
     const getUserAccount = (userId) => {
-        updateAccountData(userId).onEnd(account => {
-            console.log(account);
-            if(!account.isVip) setAppBlock({ block: true, reason: "Приложение доступно только для вип-пользователей Хотару. Приобрести вип можно, задонатив нам на сумму 45 рублей." })
-        });
+        updateAccountData(userId);
     }
 
     const getUserChats = (userId) => {
         axios.get(`https://blowoutbots.somee.com/api/GetUserChats?userId=${userId}`)
             .then(({ data }) => {
-                setDataChats(data);
+                setDataChats(data.retrieve.chats);
                 setSpinnerState(false);
             })
     };
@@ -94,10 +101,11 @@ export function RootLayoutChat({ id }) {
     const chooseChat = (chat) => {
         setText("Загружаем вашу информацию в беседе...");
         setSpinnerState(true);
-        setCorrectDataChat(chat);
-        updateBaseUser(userId, chat.id).onEnd(() => {
-            setActiveLocalPanel(true);
-            setSpinnerState(false);
+        updateBaseChat(chat.id).onEnd(() =>{
+            updateBaseUser(userId, chat.id).onEnd(() => {
+                setActiveLocalPanel(true);
+                setSpinnerState(false);
+            });
         });
     }
 

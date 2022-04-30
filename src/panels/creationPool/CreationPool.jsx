@@ -23,13 +23,13 @@ const settingsPanel = [
     {
         id: "creationPool_customCurrencyRp",
         title: "Создание РП Валют",
-        description: "Создание и модифицирование кастомных РП валют команд",
+        description: "Создание и модифицирование кастомных РП валют",
         icon: <Icon28MoneyRequestCircleFillBlue/>
     },
     {
         id: "creationPool_customCurrencyRpList",
         title: "Список всех Рп валют команд",
-        description: "Менеджмент всех созданных Рп валют команд",
+        description: "Менеджмент всех созданных Рп валют",
         icon: <Icon28MoneyTransferCircleFillTurquoise/>
     },
     {

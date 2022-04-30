@@ -3,13 +3,13 @@ import { Panel, SimpleCell, Group, InfoRow, Spacing, FormItem, Input, Header, Te
 import { Icon28Notification, Icon28PenKeyholeOutline, Icon28BookOutline, Icon28MessagesCircleFillYellow, Icon28LockOutline, Icon28StarsCircleFillViolet, Icon28GhostSimleOutline, Icon28AccessibilityOutline } from '@vkontakte/icons';
 import { CustomPanelHeader } from "../../components";
 import { Icon16DoneCircle } from '@vkontakte/icons';
-import { sendBotPayload, useVkSnackbar } from "../../hooks";
+import { sendBotPayload, useDatabaseProvider, useVkSnackbar } from "../../hooks";
 import { useRouter } from "@unexp/router";
 import { EmojiPicker, unifiedToNative } from 'react-twemoji-picker';
 import EmojiData from "react-twemoji-picker/data/twemoji.json";
 import "react-twemoji-picker/dist/EmojiPicker.css"
 
-export function CreationPool_Currency({ id, chatId, chatData }) {
+export function CreationPool_Currency({ id }) {
     const [mount, setMount] = useState(true);
 
     useEffect(() => {
@@ -18,6 +18,8 @@ export function CreationPool_Currency({ id, chatId, chatData }) {
 
     const [ emojiSet, setEmojiInfo ] = useState("");
     const emojiData = Object.freeze(EmojiData);
+
+    const { chat } = useDatabaseProvider();
 
     const handleEmojiSelect = (emoji) => {
         setEmojiInfo(unifiedToNative(emoji.unicode));
@@ -28,7 +30,7 @@ export function CreationPool_Currency({ id, chatId, chatData }) {
     const snackbarLocate = useVkSnackbar();
 
     const CreateRpCurrency = () => {
-        let peerId = 2000000000 + chatId;
+        let peerId = 2000000000 + chat.id;
         let text = "";
         if(emojiSet != "") text = `+рпвалюта ${rpText}${emojiSet}`
         else text = `+рпвалюта ${rpText}`

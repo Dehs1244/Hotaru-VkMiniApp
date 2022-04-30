@@ -20,7 +20,7 @@ const settingsPanel = [
         icon: <Icon28Notification/>
     },
     {
-        id: panelIds.SETTINGS_NOTIFICATIONS_ID,
+        id: panelIds.SETTINGS_QUARANTINE_ZONE_ID,
         title: "Карантинная зона беседы",
         description: "Настройка макс. игроков, темы карантинной зоны, время сброса груза и т.д",
         icon: <Icon28SnowflakeOutline/>

@@ -3,7 +3,7 @@ import VKBridge from "@vkontakte/vk-bridge";
 import { AdaptivityProvider, ANDROID, AppRoot } from "@vkontakte/vkui";
 import { Router } from "@unexp/router";
 
-import { RootLayoutChat } from "./RootLayoutChat";
+import { RootLayout } from "./RootLayout";
 import '@vkontakte/vkui/dist/unstable.css' 
 
 import { useAppearance } from "./hooks";
@@ -44,7 +44,7 @@ export function App() {
         <Router>
             <AdaptivityProvider>
                 <AppRoot>
-                    <RootLayoutChat/>
+                    <RootLayout/>
                 </AppRoot>
             </AdaptivityProvider>
         </Router>

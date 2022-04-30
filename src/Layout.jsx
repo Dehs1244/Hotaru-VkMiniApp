@@ -76,6 +76,9 @@ export function Layout({ chatId, chatData, userId, rootBack }) {
                     <Panels.CreationPool_Currency id= {panelIds.CREATION_POOL_CUSTOM_CURRENCY_ID}/>
                     <Panels.TalkCards id= {panelIds.TALK_CARDS_ID}/>
                     <Panels.BankBuyCard id= {panelIds.BANK_BUY_CARD_ID}/>
+                    <Panels.BankTakeoffBalance id={panelIds.BANK_TAKEOFF_CARD_ID}/>
+                    <Panels.BankTransBalance id={panelIds.BANK_TRANS_CARD_ID}/>
+                    <Panels.CreationPollCurrencyList id={panelIds.CREATION_POOL_CUSTOM_CURRENCY_LIST_ID}/>
                 </View>
             </SplitCol>
         </SplitLayout>

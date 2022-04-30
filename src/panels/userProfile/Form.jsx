@@ -73,7 +73,6 @@ export function Form({ id, userProfile }) {
             }
 
             <Group header={<Header mode="secondary">Экономика</Header>}>
-                <SimpleCell onClick={() => push({ modal: modalIds.USER_PROFILE_CARDS_ID }, { userProfile })} expandable before={<Icon28BankOutline />}>Банк</SimpleCell>
                 <SimpleCell onClick={() => push({ modal: modalIds.USER_PROFILE_BANKS_ID })} expandable before={<Icon28PaymentCardOutline />}>Банковские карты</SimpleCell>
             </Group>
 

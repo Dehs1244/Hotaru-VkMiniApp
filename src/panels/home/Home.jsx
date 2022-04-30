@@ -102,7 +102,7 @@ export function Home({ id, userId, rootBack }) {
         for (var i = 0; i < chatData.chatAdmins.length; i++) {
             if (chatData.chatAdmins[i] == userId) setUserAdmin(true);
         }
-        if (chatData.OwnerId == userId) setUserAdmin(true);
+        if (chatData.ownerId == userId) setUserAdmin(true);
         return () => setMount(false);
     }, []);
 
@@ -210,18 +210,8 @@ export function Home({ id, userId, rootBack }) {
                                         })
                                     }
                                     {
-                                        user_id && VKBridge.supports("VKWebAppAddToCommunity") &&
+                                        user_id &&
                                         <Card>
-                                            <SimpleCell before={
-                                                <Icon28AddOutline />
-                                            }
-                                                onClick={() => VKBridge.send("VKWebAppAddToCommunity", {})}
-                                                size="m"
-                                                multiline
-                                                description="Установите приложение в свое сообщество за один клик"
-                                            >
-                                                Установить приложение
-                                            </SimpleCell>
                                             <SimpleCell before={<Icon28BookOutline />}
                                                 onClick={() => rootBack()}
                                                 size="m"

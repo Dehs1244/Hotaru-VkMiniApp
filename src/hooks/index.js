@@ -10,3 +10,4 @@ export { useRootPopout } from "./popoutContext";
 export { useAlert } from "./popoutContext"
 export { AlertActionsParameters } from "./popoutContext"
 export { useLocalStorage } from "./localStorageHook";
+export { useUserToken } from "./tokenHook";

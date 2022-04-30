@@ -2,19 +2,20 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "@unexp/router";
 import { Panel, Group, SimpleCell, Header, Div, Title, MiniInfoCell, CardGrid, Card, Button } from "@vkontakte/vkui";
 import { CustomPanelHeader } from "../../components";
-import { sendBotPayload, useVkSnackbar } from "../../hooks";
+import { sendBotPayload, useDatabaseProvider, useVkSnackbar } from "../../hooks";
 import { IconWeapon, IconAttention, IconSurvive, IconDurability } from "../../icons";
 import { Icon28FavoriteCircleFillYellow, Icon28BrainOutline, Icon16Crown, Icon16Done } from '@vkontakte/icons';
-export function OperativeForm({ id, chatId }) {
+export function OperativeForm({ id }) {
 
     const [operative, setOperative] = useState(useParams().operative);
     const [card, setCard] = useState(useParams().cardInfo);
     const [operativeIndex, setOperativeIndex] = useState(useParams().operIndx);
     const [isMainOper, setIsMainOper] = useState(operative.isMainOperative);
     const snackbar = useVkSnackbar();
+    const { chat } = useDatabaseProvider();
 
     const setMainOper = () => {
-        let peerId = 2000000000 + chatId;
+        let peerId = 2000000000 + chat.id;
         operative.isMainOperative = true;
         setIsMainOper(true);
         sendBotPayload(peerId, "!оперосн " + operativeIndex + 1);
