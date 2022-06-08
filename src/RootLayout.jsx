@@ -169,10 +169,10 @@ export function RootLayout({ id }) {
                                 }
                             </Group>
                         </Group>
+                        <MainFooterInfo />
                     </Fragment>
                     : activeLayout
             }
-            <MainFooterInfo />
         </Panel>
     )
 }

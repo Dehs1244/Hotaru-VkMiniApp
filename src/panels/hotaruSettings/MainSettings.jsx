@@ -1,8 +1,8 @@
 import React, { useReducer, useState } from "react";
-import { Panel, Radio, Checkbox, Group, Header, FormItem, Slider, InfoRow, Snackbar, Button } from "@vkontakte/vkui";
+import { Panel, Radio, Checkbox, Group, Header, FormItem, Slider, InfoRow, Snackbar, Button, Placeholder } from "@vkontakte/vkui";
 import { CustomPanelHeader } from "../../components";
 import { sendBotPayload } from "../../hooks";
-import { Icon16DoneCircle } from '@vkontakte/icons';
+import { Icon16DoneCircle, Icon28DiamondOutline } from '@vkontakte/icons';
 
 export function MainSettings({ id, chatData, chatId }) {
 
@@ -68,6 +68,12 @@ export function MainSettings({ id, chatData, chatId }) {
       <CustomPanelHeader status="Основные настройки чата" />
 
       <FormItem top={<Header>Версия нейрогенератора</Header>}>
+      {
+          !chatData.vip &&
+          <Placeholder icon={<Icon28DiamondOutline/>}>
+            Другие режимы нейрогенерации доступны вип-беседам
+          </Placeholder>
+        }
         <Radio name="radioGeneration" value="1" description="Обычный нейрогенератор" defaultChecked={chatData.settings.textGeneration == 1} onChange={() => setMessageGenerationVersion(1)}>
           Нейрогенератор V1
         </Radio>

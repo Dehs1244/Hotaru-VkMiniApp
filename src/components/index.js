@@ -10,6 +10,8 @@ export { AppearanceProvider } from "./AppearanceProvider";
 export { InfinityScroll } from "./InfinityScroll";
 export { DatabaseProvider } from "./DatabaseProvider";
 export { PopoutProvider } from "./PopoutProvider";
+export { CustomRenderPanel } from "./CustomRenderPanel";
+export { CustomRenderPanels } from "./CustomRenderPanels"
 
 export { FavoriteList } from "./FavoriteList";
 export { InputWithFavorite } from "./InputWithFavorite";
